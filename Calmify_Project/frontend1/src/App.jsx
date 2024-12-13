@@ -36,18 +36,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/Signup/Signup.jsx";
-import Login from "./pages/Login";
-import ForgetPassword from "./pages/ForgetPassword";
-import ResetPassword from "./pages/ResetPassword";
+
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />} />
+                {/*<Route path="/" element={<Login />} />*/}
                 <Route path="/Signup" element={<Signup />} />
-                <Route path="/forget-password" element={<ForgetPassword />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
+                {/*<Route path="/forget-password" element={<ForgetPassword />} />*/}
+                {/*<Route path="/reset-password" element={<ResetPassword />} />*/}
             </Routes>
         </Router>
     );

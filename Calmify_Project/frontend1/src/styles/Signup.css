@@ -1,37 +1,178 @@
-form input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-form input:focus {
-    border-color: #007bff;
-    outline: none;
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* Style du bouton */
-form button {
+section.h-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+form {
+    max-width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
+}
+
+
+form p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+form .flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between social buttons */
+    margin-bottom: 20px;
+}
+
+form .flex button {
     border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b5998;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease;
 }
 
-form button:hover {
-    background-color: #0056b3;
+form .flex button:hover {
+    transform: scale(1.1);
+}
+
+form .my-4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    font-weight: 600;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+form .my-4::before,
+form .my-4::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}
+
+form .mb-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between input fields */
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #3b71ca;
+}
+
+form .mb-6 .block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/*ce que j'ai ajouteee*/
+.mb-6.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button[type="button"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #3b71ca;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #2c57a7;
     transform: scale(1.05);
 }
 
-form button:active {
-    background-color: #003d80;
-    transform: scale(1);
+p.text-danger {
+    color: #ff4d4f;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
 }
+
+p.text-danger a {
+    color: #ff4d4f;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+p.text-danger a:hover {
+    color: #e63e3f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section.h-screen {
+        flex-direction: column; /* Stack image and form vertically */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    img {
+        max-width: 80%; /* Adjust image size on smaller screens */
+    }
+
+    form {
+        width: 100%; /* Make form take full width */
+    }
+}
+
+
