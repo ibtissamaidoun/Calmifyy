@@ -8,9 +8,9 @@ services:
       dockerfile: Dockerfile
     container_name: Backend
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/CalmifyDB
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/projet_uml
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=Salmachaimae
+      - SPRING_DATASOURCE_PASSWORD=ibtissamat2002
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
       - SPRING_SQL_INIT_PLATFORM=postgresql
     ports:
@@ -50,8 +50,8 @@ services:
     container_name: db2
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Salmachaimae
-      POSTGRES_DB: CalmifyDB
+      POSTGRES_PASSWORD: ibtissamat2002
+      POSTGRES_DB: projet_uml
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:

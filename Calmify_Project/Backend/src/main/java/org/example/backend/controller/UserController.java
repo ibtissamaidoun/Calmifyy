@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,4 +38,29 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody User loginUser) {
+        // Extraire l'email et le mot de passe de l'utilisateur
+        String email = loginUser.getEmail();
+        String password = loginUser.getPassword();
+
+        // Authentifier l'utilisateur via le service
+        User authenticatedUser = userService.authenticateUser(email, password);
+
+        if (authenticatedUser == null) {
+            // Si l'authentification échoue, retourner une réponse UNAUTHORIZED
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+        }
+
+        // Générer un token pour l'utilisateur authentifié
+        String token = userService.generateTokenForUser(authenticatedUser);
+
+        // Construire la réponse
+        Map<String, Object> response = new HashMap<>();
+        response.put("user", authenticatedUser);
+        response.put("token", token);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

@@ -52,5 +52,17 @@ public class UserService {
         response.put("token", token);
         return response;
     }
+    public User authenticateUser(String email, String password) {
+        // Rechercher l'utilisateur par email
+        return userRepository.findByEmail(email)
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
+                .orElse(null);
+    }
+    public String generateTokenForUser(User user) {
+        // Appeler jwtUtil pour générer un token
+        return jwtUtil.generateToken(user.getEmail());
+    }
+
+
 
 }
