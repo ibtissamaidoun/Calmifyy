@@ -20,38 +20,78 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expirationTime;
 
+    /**
+     * Méthode pour obtenir la clé de signature à partir de la clé secrète.
+     * La clé doit être encodée en Base64.
+     */
     public SecretKey getSigningKey() {
-        // Décoder la clé si elle est encodée en Base64
-        byte[] keyBytes = secretKey.getBytes();
-        return Keys.hmacShaKeyFor(keyBytes);
+        byte[] keyBytes = Base64.getDecoder().decode(secretKey); // Décoder la clé secrète en Base64
+        return Keys.hmacShaKeyFor(keyBytes); // Créer une clé HMAC-SHA
     }
 
+    /**
+     * Génère un token JWT pour un email donné.
+     */
     public String generateToken(String email) {
         return Jwts.builder()
-                .setSubject(email)
-                .signWith(getSigningKey()) // Utiliser une clé suffisamment longue
+                .setSubject(email) // Définit le subject (email)
+                .setIssuedAt(new Date()) // Date de création
+                .setExpiration(new Date(System.currentTimeMillis() + expirationTime)) // Date d'expiration
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Signature avec HMAC-SHA256
                 .compact();
     }
 
+    /**
+     * Valide un token JWT en comparant l'email et en vérifiant l'expiration.
+     */
     public boolean validateToken(String token, String email) {
-        String subject = extractEmail(token);
-        return (subject.equals(email) && !isTokenExpired(token));
+        try {
+            String subject = extractEmail(token);
+            return (subject.equals(email) && !isTokenExpired(token));
+        } catch (Exception e) {
+            return false; // Retourne false si le token est invalide ou expiré
+        }
     }
 
+    /**
+     * Extrait l'email (subject) du token JWT.
+     */
     public String extractEmail(String token) {
-        return extractAllClaims(token).getSubject();
+        return extractAllClaims(token).getSubject(); // Récupère le champ "sub" (subject) du JWT
     }
 
+    /**
+     * Vérifie si le token est expiré.
+     */
     public boolean isTokenExpired(String token) {
         return extractAllClaims(token).getExpiration().before(new Date());
     }
 
+    /**
+     * Extrait toutes les claims (payload) du token JWT.
+     */
     private Claims extractAllClaims(String token) {
-        // Si la clé est encodée en Base64, la décoder
-        byte[] decodedKey = Base64.getDecoder().decode(secretKey);
-        return Jwts.parser()
-                .setSigningKey(decodedKey)
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey()) // Utiliser la clé décodée
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    /**
+     * Valide un token JWT et retourne l'email extrait.
+     */
+    public String validateTokenAndGetEmail(String token) {
+        try {
+            return Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey()) // Utiliser la clé décodée
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject(); // Récupère l'email depuis le token
+        } catch (Exception e) {
+            System.err.println("Token validation failed: " + e.getMessage());
+            return null; // Token invalide ou expiré
+        }
     }
 }

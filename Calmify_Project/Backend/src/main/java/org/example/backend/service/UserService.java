@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -61,6 +62,30 @@ public class UserService {
     public String generateTokenForUser(User user) {
         // Appeler jwtUtil pour générer un token
         return jwtUtil.generateToken(user.getEmail());
+    }
+    public String generateResetToken(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) {
+            throw new IllegalArgumentException("User with email not found");
+        }
+
+        // Générer un token (JWT ou UUID)
+        return jwtUtil.generateToken(email); // Utilisation de JwtUtil existant
+    }
+    public void resetPassword(String token, String newPassword) {
+        // Décoder et valider le token
+        String email = jwtUtil.validateTokenAndGetEmail(token);
+        if (email == null) {
+            throw new IllegalArgumentException("Invalid or expired token");
+        }
+
+        // Récupérer l'utilisateur par email
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        // Mettre à jour le mot de passe
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 
 

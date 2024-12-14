@@ -62,5 +62,33 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @PostMapping("/reset-password/request")
+    public ResponseEntity<?> requestPasswordReset(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        try {
+            String resetToken = userService.generateResetToken(email);
+
+            // TODO: Envoyer le token par email (intégrer un service d'email ici)
+            System.out.println("Reset token: " + resetToken); // À remplacer par un envoi d'email
+
+            return new ResponseEntity<>("Password reset email sent successfully", HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/reset-password/confirm")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+        String newPassword = request.get("newPassword");
+
+        try {
+            userService.resetPassword(token, newPassword);
+            return new ResponseEntity<>("Password reset successfully", HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }
