@@ -114,7 +114,6 @@ form .mb-6 .block {
     align-items: center;
     gap: 10px;
 }
-/*ce que j'ai ajouteee*/
 .mb-6.flex {
     display: flex;
     justify-content: space-between;
@@ -174,5 +173,3 @@ p.text-danger a:hover {
         width: 100%; /* Make form take full width */
     }
 }
-
-
