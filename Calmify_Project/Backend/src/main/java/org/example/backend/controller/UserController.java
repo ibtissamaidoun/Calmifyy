@@ -3,6 +3,7 @@ package org.example.backend.controller;
 import jakarta.validation.Valid;
 import org.example.backend.model.User;
 import org.example.backend.service.UserService;
+import org.example.backend.util.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,11 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final JwtUtil jwtUtil;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -62,5 +65,15 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String token) {
+        // Optionnel : Invalider le token en l'ajoutant à une liste noire
+        String jwtToken = token.replace("Bearer ", ""); // Supprime le préfixe "Bearer "
+        jwtUtil.addToBlacklist(jwtToken);
+
+        // Réponse de succès
+        return new ResponseEntity<>("Déconnexion réussie", HttpStatus.OK);
+    }
+
 
 }

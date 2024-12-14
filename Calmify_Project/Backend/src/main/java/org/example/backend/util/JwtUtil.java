@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class JwtUtil {
@@ -19,6 +21,22 @@ public class JwtUtil {
 
     @Value("${jwt.expiration}")
     private long expirationTime;
+
+    // Liste noire des tokens invalidés
+    private final Set<String> tokenBlacklist = new HashSet<>();
+
+    public void addToBlacklist(String token) {
+        tokenBlacklist.add(token);
+    }
+
+    public boolean isTokenBlacklisted(String token) {
+        return tokenBlacklist.contains(token);
+    }
+
+    public boolean validateToken(String token, String email) {
+        String subject = extractEmail(token);
+        return (subject.equals(email) && !isTokenExpired(token) && !isTokenBlacklisted(token));
+    }
 
     public SecretKey getSigningKey() {
         // Décoder la clé si elle est encodée en Base64
@@ -33,10 +51,6 @@ public class JwtUtil {
                 .compact();
     }
 
-    public boolean validateToken(String token, String email) {
-        String subject = extractEmail(token);
-        return (subject.equals(email) && !isTokenExpired(token));
-    }
 
     public String extractEmail(String token) {
         return extractAllClaims(token).getSubject();
