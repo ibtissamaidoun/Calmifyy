@@ -83,6 +83,33 @@
     border-color: #3b71ca;
 }
 
+/* Wrapper for the password input with toggle */
+.password-wrapper {
+    position: relative; /* Allows positioning of the icon */
+}
+
+/* Eye icon toggle */
+.password-toggle {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    right: 15px; /* Position near the right edge */
+    transform: translateY(-50%);
+    cursor: pointer; /* Pointer cursor for interactivity */
+}
+
+/* Size and color of Material UI icons */
+.password-icon {
+    font-size: 20px; /* Icon size */
+    color: #aaa; /* Default color for the icon */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for eye icon */
+.password-toggle:hover .password-icon {
+    color: #3b71ca; /* Highlighted color on hover */
+}
+
+
 /* Forgot Password Link */
 .forgot-password {
     display: block;

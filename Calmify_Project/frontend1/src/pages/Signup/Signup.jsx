@@ -1,9 +1,17 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, {useState} from "react";
 import meditationImage from "../../assets/meditation.png";
 import "../../styles/Signup.css";
 
+// Import Material UI icons
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 export default function BasicExample() {
+    const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword); // Toggle between true/false
+    };
     return (
         <section className="login-container">
             {/* login-wrapper: divise la page en deux sections: image et formulaire */}
@@ -43,7 +51,7 @@ export default function BasicExample() {
                             {/* Password input */}
                             <div className="floating-label">
                                 <input
-                                    type="password"
+                                    type={showPassword ? "text" : "password"} // Toggle input type
                                     id="password"
                                     name="password"
                                     className="floating-input"
@@ -52,6 +60,13 @@ export default function BasicExample() {
                                 <label htmlFor="password" className="floating-label-text">
                                     Password
                                 </label>
+                                <span className="password-toggle" onClick={togglePasswordVisibility}>
+                                    {showPassword ? (
+                                        <Visibility className="password-icon"/>
+                                    ) : (
+                                        <VisibilityOff className="password-icon"/>
+                                    )}
+                                </span>
                             </div>
 
                             {/* Forgot Password Link */}
