@@ -1,96 +1,80 @@
 // eslint-disable-next-line no-unused-vars
-import '../../styles/Signup.css';
-// eslint-disable-next-line no-unused-vars
 import React from "react";
-import { TEInput, TERipple } from "tw-elements-react";
+import meditationImage from "../../assets/meditation.png";
+import "../../styles/Signup.css";
 
 export default function BasicExample() {
     return (
-        <section className="h-screen">
-            <div className="h-full">
-                <div className="flex h-full items-center justify-center">
-                    <div className="w-full max-w-md">
+        <section className="login-container">
+            {/* login-wrapper: divise la page en deux sections: image et formulaire */}
+            <div className="login-wrapper">
+                {/* Left Section: Illustration */}
+                <div className="illustration-section">
+                    <img src={meditationImage}
+                         alt="Meditation Illustration"
+                         className="illustration-image"/>
+
+                </div>
+
+                {/* Right Section: Form */}
+                <div className="form-section">
+                    {/*Enveloppe intérieure du formulaire, gardant l'espacement et l'alignement propres.*/}
+                    <div className="form-wrapper">
+                        <h1 className="form-title">Welcome Back!</h1>
+                        <p className="form-subtitle">
+                            If you already have an account, please fill in this Login Form :
+                        </p>
+
                         <form>
-                            {/* Sign in section */}
-                            <div className="flex flex-row items-center justify-center lg:justify-start">
-                                <p className="mb-0 mr-4 text-lg">Sign in with</p>
-
-                                {/* Social media buttons */}
-                                <TERipple rippleColor="light">
-                                    <button type="button" className="mx-1 social-button">
-                                        <i className="fab fa-facebook-f"></i>
-                                    </button>
-                                </TERipple>
-                                <TERipple rippleColor="light">
-                                    <button type="button" className="mx-1 social-button">
-                                        <i className="fab fa-twitter"></i>
-                                    </button>
-                                </TERipple>
-                                <TERipple rippleColor="light">
-                                    <button type="button" className="mx-1 social-button">
-                                        <i className="fab fa-linkedin-in"></i>
-                                    </button>
-                                </TERipple>
-                            </div>
-
-                            {/* Separator */}
-                            <div className="my-4 flex items-center">
-                                <p className="mx-4 mb-0 text-center font-semibold">Or</p>
-                            </div>
-
                             {/* Email input */}
-                            <div className="mb-6">
-                                <TEInput
+                            <div className="floating-label">
+                                <input
                                     type="email"
-                                    placeholder="Email address"
-                                    size="lg"
-                                    className="input-field"
-                                ></TEInput>
+                                    id="email"
+                                    name="email"
+                                    className="floating-input"
+                                    placeholder=" "
+                                />
+                                <label htmlFor="email" className="floating-label-text">
+                                    Email Address
+                                </label>
                             </div>
 
                             {/* Password input */}
-                            <div className="mb-6">
-                                <TEInput
+                            <div className="floating-label">
+                                <input
                                     type="password"
-                                    placeholder="Password"
-                                    className="input-field"
-                                    size="lg"
-                                ></TEInput>
+                                    id="password"
+                                    name="password"
+                                    className="floating-input"
+                                    placeholder=" "
+                                />
+                                <label htmlFor="password" className="floating-label-text">
+                                    Password
+                                </label>
                             </div>
 
-                            {/* Remember Me and Forgot Password */}
-                            <div className="mb-6 flex">
-                                <div>
-                                    <input
-                                        type="checkbox"
-                                        id="remember-me"
-                                        className="mr-2"
-                                    />
-                                    <label htmlFor="remember-me">Remember me</label>
-                                </div>
-                                <a href="#!" className="text-link">
+                            {/* Forgot Password Link */}
+                            <div className="form-link">
+                                <a href="/forget-password" className="forgot-password">
                                     Forgot password?
                                 </a>
                             </div>
 
-                            {/* Login button */}
-                            <div className="text-center">
-                                <TERipple rippleColor="light">
-                                    <button
-                                        type="button"
-                                        className="login-button"
-                                    >
-                                        Login
-                                    </button>
-                                </TERipple>
-
-                                <p className="mt-2 pt-1 text-sm font-semibold">
-                                    Don't have an account?{" "}
-                                    <a href="#!" className="text-danger">
-                                        Register
-                                    </a>
-                                </p>
+                            {/* Login Button */}
+                            <div className="form-group">
+                                <button type="button" className="login-button">
+                                    Login
+                                </button>
                             </div>
+
+                            {/* Sign Up Link */}
+                            <p className="signup-text">
+                                If you don’t have an account, you can sign up here:{" "}
+                                <a href="/reset-password" className="signup-link">
+                                    Sign Up
+                                </a>
+                            </p>
                         </form>
                     </div>
                 </div>

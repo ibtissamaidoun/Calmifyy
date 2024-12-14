@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -7,172 +6,203 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: #f5f5f5;
+/* Main Container */
+.login-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 300px;
 }
 
-section.h-screen {
+/* Wrapper for Layout */
+.login-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #f5f5f5;
-}
-
-form {
-    max-width: 400px;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 900px;
     width: 100%;
 }
 
-
-form p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-}
-
-form .flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust spacing between social buttons */
-    margin-bottom: 20px;
-}
-
-form .flex button {
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3b5998;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-form .flex button:hover {
-    transform: scale(1.1);
-}
-
-form .my-4 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-    font-weight: 600;
-    color: #777;
-    margin-bottom: 20px;
-}
-
-form .my-4::before,
-form .my-4::after {
-    content: '';
+/* Left Section: Illustration */
+.illustration-section {
     flex: 1;
-    height: 1px;
-    background-color: #ccc;
+    background-color: #C9EDFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%); /* Creates the diagonal effect */
 }
 
-form .mb-6 {
+.illustration-image {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Right Section: Form */
+.form-section {
+    flex: 1;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Spacing between input fields */
-    margin-bottom: 20px;
+    justify-content: center;
+    background-color: #ffffff;
 }
 
-input[type="email"],
-input[type="password"] {
+/* Form Title and Subtitle */
+.form-title {
+    font-size: 2rem;
+    color: #83A8F4;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: #626A7A;
+    margin-bottom: 30px;
+}
+
+/* Input Fields */
+.input-field {
     width: 100%;
     padding: 12px 15px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    margin-bottom: 20px;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus {
+.input-field:focus {
     border-color: #3b71ca;
 }
 
-form .mb-6 .block {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-/*ce que j'ai ajouteee*/
-.mb-6.flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Forgot Password Link */
+.forgot-password {
+    display: block;
     margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #83A8F4;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-button[type="button"] {
+.forgot-password:hover {
+    color: #2c57a7;
+}
+
+/* Login Button */
+.login-button {
     width: 100%;
     padding: 12px 15px;
-    background-color: #3b71ca;
-    color: white;
+    background-color: #83A8F4;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button[type="button"]:hover {
+.login-button:hover {
     background-color: #2c57a7;
     transform: scale(1.05);
 }
 
-p.text-danger {
-    color: #ff4d4f;
-    margin-top: 10px;
-    font-size: 14px;
+/* Sign Up Link */
+.signup-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #626A7A;
     text-align: center;
 }
 
-p.text-danger a {
-    color: #ff4d4f;
-    font-weight: 600;
+.signup-link {
+    color: #83A8F4;
     text-decoration: none;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
-p.text-danger a:hover {
-    color: #e63e3f;
+.signup-link:hover {
+    color: #2c57a7;
 }
+/* Wrapper for the floating label */
+.floating-label {
+    position: relative;
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Spacing between input fields */
+}
+
+/* Input field */
+.floating-input {
+    width: 100%;
+    padding: 16px 10px 8px; /* Top padding for the label, bottom padding for text */
+    font-size: 16px;
+    border: 1px solid #535bf2;
+    border-radius: 8px; /* Rounded corners */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent; /* No background color */
+}
+
+/* Focus effect on the input field */
+.floating-input:focus {
+    border-color: #3b71ca;
+    box-shadow: 0 0 3px rgba(59, 113, 202, 0.5); /* Optional glow effect */
+}
+
+/* Placeholder hidden by default */
+.floating-input::placeholder {
+    color: transparent; /* Hide the placeholder text */
+}
+
+/* Floating label styling */
+.floating-label-text {
+    position: absolute;
+    top: 50%; /* Center vertically inside the input */
+    left: 15px; /* Spacing from the left */
+    transform: translateY(-50%); /* Proper centering */
+    font-size: 16px;
+    color: #aaa; /* Default label color */
+    pointer-events: none; /* Disable interactions with the label */
+    transition: all 0.3s ease; /* Smooth transition for position and color */
+}
+
+/* Floating effect: Move the label when input is focused or has content */
+.floating-input:focus + .floating-label-text,
+.floating-input:not(:placeholder-shown) + .floating-label-text {
+    top: -10px; /* Float label above the input box */
+    left: 10px; /* Slight adjustment to the left */
+    font-size: 12px; /* Smaller font size for floating label */
+    color: #83A8F4; /* Change color to match active input border */
+    font-weight: bold; /* Optional: Make the floating label bold */
+}
+
+/* Optional hover effect for inputs */
+.floating-input:hover {
+    border-color: #3b71ca;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    section.h-screen {
-        flex-direction: column; /* Stack image and form vertically */
-        justify-content: center;
-        gap: 20px;
+    .login-wrapper {
+        flex-direction: column;
     }
 
-    img {
-        max-width: 80%; /* Adjust image size on smaller screens */
+    .illustration-section {
+        display: none; /* Hide the illustration on smaller screens */
     }
 
-    form {
-        width: 100%; /* Make form take full width */
+    .form-section {
+        padding: 20px;
     }
 }
-
-
