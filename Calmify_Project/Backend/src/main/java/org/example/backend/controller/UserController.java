@@ -26,14 +26,13 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
-        if (userService.isEmailAlreadyUsed(user.getEmail())) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.CONFLICT);
+        try {
+            Map<String, Object> response = userService.registerUserAndGenerateToken(user);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (IllegalStateException e) {
+            // Retourne un message d'erreur si le questionnaire n'est pas rempli
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        if (userService.isPhoneNumberAlreadyUsed(user.getPhoneNumber())) {
-            return new ResponseEntity<>("Phone number already in use", HttpStatus.CONFLICT);
-        }
-        Map<String, Object> response = userService.registerUserAndGenerateToken(user);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -42,7 +41,7 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody User loginUser) {
+    public ResponseEntity<?>loginUser(@RequestBody User loginUser) {
         // Extraire l'email et le mot de passe de l'utilisateur
         String email = loginUser.getEmail();
         String password = loginUser.getPassword();

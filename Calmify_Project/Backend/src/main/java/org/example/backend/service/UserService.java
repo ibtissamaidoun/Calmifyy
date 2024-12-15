@@ -44,6 +44,20 @@ public class UserService {
     }
     // Nouvelle méthode pour inscrire un utilisateur et générer un token
     public Map<String, Object> registerUserAndGenerateToken(User user) {
+
+        // Vérifie si l'utilisateur a rempli le questionnaire
+        if (Boolean.FALSE.equals(user.getQuestionnaireCompleted())) {
+            throw new IllegalStateException("Vous devez compléter le questionnaire avant de vous inscrire.");
+        }
+
+        // Vérifie si l'email ou le téléphone est déjà utilisé
+        if (isEmailAlreadyUsed(user.getEmail())) {
+            throw new IllegalStateException("Cet email est déjà utilisé.");
+        }
+        if (isPhoneNumberAlreadyUsed(user.getPhoneNumber())) {
+            throw new IllegalStateException("Ce numéro de téléphone est déjà utilisé.");
+        }
+
         User savedUser = saveUser(user);
         String token = jwtUtil.generateToken(savedUser.getEmail()); // Utilisation correcte de jwtUtil
 
