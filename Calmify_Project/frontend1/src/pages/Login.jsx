@@ -1,51 +1,99 @@
-import React, { Component } from 'react'
+// eslint-disable-next-line no-unused-vars
+import React, {useState} from "react";
+import meditationImage from "../assets/meditation.png";
+import "../styles/Login.css";
 
-export default class Login extends Component {
-    render() {
-        return (
-            <form>
-                <h3>Sign In</h3>
+// Import Material UI icons
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-                <div className="mb-3">
-                    <label>Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Enter email"
-                    />
+export default function BasicExample() {
+    const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword); // Toggle between true/false
+    };
+    return (
+        <section className="login-container">
+            {/* login-wrapper: divise la page en deux sections: image et formulaire */}
+            <div className="login-wrapper">
+                {/* Left Section: Illustration */}
+                <div className="illustration-section">
+                    <img src={meditationImage}
+                         alt="Meditation Illustration"
+                         className="illustration-image"/>
+
                 </div>
 
-                <div className="mb-3">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Enter password"
-                    />
-                </div>
+                {/* Right Section: Form */}
+                <div className="form-section">
+                    {/*Enveloppe intérieure du formulaire, gardant l'espacement et l'alignement propres.*/}
+                    <div className="form-wrapper">
+                        <h1 className="form-title">Welcome Back!</h1>
+                        <p className="form-subtitle">
+                            If you already have an account, please fill in this Login Form :
+                        </p>
 
-                <div className="mb-3">
-                    <div className="custom-control custom-checkbox">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                        />
-                        <label className="custom-control-label" htmlFor="customCheck1">
-                            Remember me
-                        </label>
+                        <form>
+                            {/* Email input */}
+                            <div className="floating-label">
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="floating-input"
+                                    placeholder=" "
+                                />
+                                <label htmlFor="email" className="floating-label-text">
+                                    Email Address
+                                </label>
+                            </div>
+
+                            {/* Password input */}
+                            <div className="floating-label">
+                                <input
+                                    type={showPassword ? "text" : "password"} // Toggle input type
+                                    id="password"
+                                    name="password"
+                                    className="floating-input"
+                                    placeholder=" "
+                                />
+                                <label htmlFor="password" className="floating-label-text">
+                                    Password
+                                </label>
+                                <span className="password-toggle" onClick={togglePasswordVisibility}>
+                                    {showPassword ? (
+                                        <Visibility className="password-icon"/>
+                                    ) : (
+                                        <VisibilityOff className="password-icon"/>
+                                    )}
+                                </span>
+                            </div>
+
+                            {/* Forgot Password Link */}
+                            <div className="form-link">
+                                <a href="/forget-password" className="forgot-password">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            {/* Login Button */}
+                            <div className="form-group">
+                                <button type="button" className="login-button">
+                                    Login
+                                </button>
+                            </div>
+
+                            {/* Sign Up Link */}
+                            <p className="signup-text">
+                                If you don’t have an account, you can sign up here:{" "}
+                                <a href="/reset-password" className="signup-link">
+                                    Sign Up
+                                </a>
+                            </p>
+                        </form>
                     </div>
                 </div>
-
-                <div className="d-grid">
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </div>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
-            </form>
-        )
-    }
+            </div>
+        </section>
+    );
 }
