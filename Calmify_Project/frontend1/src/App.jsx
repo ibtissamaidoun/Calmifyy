@@ -35,17 +35,19 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Signup from "./pages/Signup/Signup.jsx";
+import ForgetPassword from "./pages/ForgetPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
+import Login from "./pages/Login.jsx";
 
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                {/*<Route path="/" element={<Login />} />*/}
-                <Route path="/Signup" element={<Signup />} />
-                {/*<Route path="/forget-password" element={<ForgetPassword />} />*/}
-                {/*<Route path="/reset-password" element={<ResetPassword />} />*/}
+                <Route path="/Login" element={<Login />} />
+                {/*<Route path="/Signup" element={<Signup />} />*/}
+                <Route path="/forget-password" element={<ForgetPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
         </Router>
     );
