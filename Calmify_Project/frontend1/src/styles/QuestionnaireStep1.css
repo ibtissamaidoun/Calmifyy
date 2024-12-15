@@ -1,0 +1,123 @@
+.questionnaire-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #BFD8E6, #D8E8D6);
+    padding: 3rem;
+}
+
+.questionnaire-content {
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    width: 100%;
+    max-width: 1100px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #3B5066;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.subtitle {
+    color: #5089C6;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 16px;
+}
+
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.question-container {
+    background: transparent;
+    padding: 0.25rem 0;
+}
+
+.question-text {
+    color: #3B5066;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.options-container {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: nowrap;
+    padding-left: 0.5rem;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+input[type="radio"] {
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #5089C6;
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="radio"]:checked {
+    background-color: #5089C6;
+    border-color: #5089C6;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.radio-text {
+    color: #5089C6;
+    font-size: 14px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-right: 0.5rem;
+}
+
+.next-button {
+    background: linear-gradient(to bottom, #7EB5E7, #5089C6);
+    color: white;
+    border: none;
+    padding: 0.4rem 1.2rem;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(80, 137, 198, 0.2);
+}
+
+.next-button:hover {
+    background: linear-gradient(to bottom, #5089C6, #3B6998);
+}

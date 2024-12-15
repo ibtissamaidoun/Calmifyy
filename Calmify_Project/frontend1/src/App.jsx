@@ -37,6 +37,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/Signup/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import QuestionnaireStep1 from "./pages/Signup/QuestionnaireStep1.jsx";
+import QuestionnaireStep2 from "./pages/Signup/QuestionnaireStep2.jsx";
 
 
 const App = () => {
@@ -45,6 +47,8 @@ const App = () => {
             <Routes>
                 <Route path="/Login" element={<Login />} />
                 <Route path="/Signup" element={<Signup />} />
+                <Route path="/Questionnaire1" element={<QuestionnaireStep1 />} />
+                <Route path="/Questionnaire2" element={<QuestionnaireStep2 />} />
                 {/*<Route path="/forget-password" element={<ForgetPassword />} />*/}
                 {/*<Route path="/reset-password" element={<ResetPassword />} />*/}
             </Routes>
