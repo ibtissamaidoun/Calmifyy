@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "../../styles/Questionnaire2.css"; // Assurez-vous de bien référencer le nouveau CSS
 
 const Questionnaire2 = () => {
@@ -78,7 +79,9 @@ const Questionnaire2 = () => {
                 </div>
 
                 <div className="buttons-step2-container">
+                    <Link to="/Questionnaire1">
                     <button className="back-step2-button">Back</button>
+                    </Link>
                     <button className="submit-step2-button">S'inscrire</button>
                 </div>
             </div>

@@ -117,7 +117,9 @@ const Signup = () => {
 
                             <div className="form-footer">
                                 <p className="learn-more">Learn how Calmify helps you manage stress</p>
+
                                 <button type="submit" className="continue-btn">Continue</button>
+
                             </div>
                         </form>
                     </div>

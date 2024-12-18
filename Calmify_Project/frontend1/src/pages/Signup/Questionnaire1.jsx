@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "../../styles/Questionnaire1.css";
 
 const Questionnaire1 = () => {
@@ -77,8 +78,9 @@ const Questionnaire1 = () => {
                         </div>
                     ))}
                 </div>
-
-                <button className="next-button">Next</button>
+                <Link to="/Questionnaire2">
+                    <button className="next-button">Next</button>
+                </Link>
             </div>
         </div>
     );
