@@ -22,19 +22,19 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-<<<<<<< HEAD
+
     private final EmailService emailService;
 
     public UserController(UserService userService, EmailService emailService) {
         this.userService = userService;
         this.emailService = emailService;
-=======
+
     private final JwtUtil jwtUtil;
 
     public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
->>>>>>> chaimae_Logout
+
     }
 
     @PostMapping("/register")
@@ -103,17 +103,17 @@ public class UserController {
     }
 
     @PostMapping("/reset-password/confirm")
-    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request) {
-        String token = request.get("token");
-        String newPassword = request.get("newPassword");
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request){
+            String token = request.get("token");
+            String newPassword = request.get("newPassword");
 
-        try {
-            userService.resetPassword(token, newPassword);
-            return new ResponseEntity<>("Password reset successfully", HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            try {
+                userService.resetPassword(token, newPassword);
+                return new ResponseEntity<>("Password reset successfully", HttpStatus.OK);
+            } catch (IllegalArgumentException e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
         }
-=======
     @PostMapping("/logout")
     public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String token) {
         // Optionnel : Invalider le token en l'ajoutant à une liste noire
@@ -122,7 +122,7 @@ public class UserController {
 
         // Réponse de succès
         return new ResponseEntity<>("Déconnexion réussie", HttpStatus.OK);
->>>>>>> chaimae_Logout
+
     }
 
 
