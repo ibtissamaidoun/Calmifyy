@@ -73,6 +73,11 @@ public class User {
     )
     private String password;
 
+    @JsonProperty("questionnaireCompleted")
+    @Column(name = "questionnaire_completed", nullable = false)
+    private Boolean questionnaireCompleted = false;
+
+
 
     public String getEmail() {
         return email;
@@ -102,11 +107,24 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
+<<<<<<< HEAD
     public String getFirstName() {
         return firstName;
     }
     public String getLastName() {
        return lastName;
+=======
+
+    public Long getId() {
+        return id;
+>>>>>>> chaimae_Logout
     }
 
+    public Boolean getQuestionnaireCompleted() {
+        return questionnaireCompleted;
+    }
+
+    public void setQuestionnaireCompleted(Boolean questionnaireCompleted) {
+        this.questionnaireCompleted = questionnaireCompleted;
+    }
 }

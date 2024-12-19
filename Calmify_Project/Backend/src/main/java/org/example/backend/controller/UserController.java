@@ -7,6 +7,7 @@ import org.example.backend.model.User;
 import org.example.backend.service.EmailService;
 import org.example.backend.service.EmailTemplateName;
 import org.example.backend.service.UserService;
+import org.example.backend.util.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,23 +22,30 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+<<<<<<< HEAD
     private final EmailService emailService;
 
     public UserController(UserService userService, EmailService emailService) {
         this.userService = userService;
         this.emailService = emailService;
+=======
+    private final JwtUtil jwtUtil;
+
+    public UserController(UserService userService, JwtUtil jwtUtil) {
+        this.userService = userService;
+        this.jwtUtil = jwtUtil;
+>>>>>>> chaimae_Logout
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
-        if (userService.isEmailAlreadyUsed(user.getEmail())) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.CONFLICT);
+        try {
+            Map<String, Object> response = userService.registerUserAndGenerateToken(user);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (IllegalStateException e) {
+            // Retourne un message d'erreur si le questionnaire n'est pas rempli
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        if (userService.isPhoneNumberAlreadyUsed(user.getPhoneNumber())) {
-            return new ResponseEntity<>("Phone number already in use", HttpStatus.CONFLICT);
-        }
-        Map<String, Object> response = userService.registerUserAndGenerateToken(user);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -46,7 +54,7 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody User loginUser) {
+    public ResponseEntity<?>loginUser(@RequestBody User loginUser) {
         // Extraire l'email et le mot de passe de l'utilisateur
         String email = loginUser.getEmail();
         String password = loginUser.getPassword();
@@ -69,6 +77,7 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+<<<<<<< HEAD
     @PostMapping("/reset-password/request")
     public ResponseEntity<?> requestPasswordReset(@RequestBody Map<String, String> request) {
         String email = request.get("email");
@@ -104,6 +113,16 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+=======
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String token) {
+        // Optionnel : Invalider le token en l'ajoutant à une liste noire
+        String jwtToken = token.replace("Bearer ", ""); // Supprime le préfixe "Bearer "
+        jwtUtil.addToBlacklist(jwtToken);
+
+        // Réponse de succès
+        return new ResponseEntity<>("Déconnexion réussie", HttpStatus.OK);
+>>>>>>> chaimae_Logout
     }
 
 
