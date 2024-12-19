@@ -25,16 +25,15 @@ public class UserController {
 
     private final EmailService emailService;
 
-    public UserController(UserService userService, EmailService emailService) {
-        this.userService = userService;
-        this.emailService = emailService;
-
     private final JwtUtil jwtUtil;
 
-    public UserController(UserService userService, JwtUtil jwtUtil) {
-        this.userService = userService;
-        this.jwtUtil = jwtUtil;
 
+
+
+    public UserController(UserService userService, EmailService emailService, JwtUtil jwtUtil) {
+        this.userService = userService;
+        this.emailService = emailService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -77,7 +76,7 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-<<<<<<< HEAD
+
     @PostMapping("/reset-password/request")
     public ResponseEntity<?> requestPasswordReset(@RequestBody Map<String, String> request) {
         String email = request.get("email");
