@@ -1,7 +1,11 @@
 package org.example.backend.controller;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.example.backend.model.User;
+import org.example.backend.service.EmailService;
+import org.example.backend.service.EmailTemplateName;
 import org.example.backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +17,15 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
+    private final EmailService emailService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, EmailService emailService) {
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @PostMapping("/register")
@@ -67,13 +74,22 @@ public class UserController {
         String email = request.get("email");
         try {
             String resetToken = userService.generateResetToken(email);
-
+            User user = userService.getUserByEmail(email);
             // TODO: Envoyer le token par email (intégrer un service d'email ici)
             System.out.println("Reset token: " + resetToken); // À remplacer par un envoi d'email
+            String resetLink = "http://localhost:3000/reset-password?token=" + resetToken;
+            String userFullName = user.getFirstName() + " " + user.getLastName();
+
+            emailService.sendResetPasswordEmail(email,userFullName, EmailTemplateName.RESET_PASSWORD,resetLink,"Reset your password");
+
+
+
 
             return new ResponseEntity<>("Password reset email sent successfully", HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -102,6 +102,11 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
-
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+       return lastName;
+    }
 
 }

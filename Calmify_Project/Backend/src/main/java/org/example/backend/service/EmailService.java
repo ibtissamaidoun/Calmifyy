@@ -1,6 +1,5 @@
 package org.example.backend.service;
 
-
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -8,19 +7,22 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
-import javax.naming.Context;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class EmailService {
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine templateEngine;
 
+    public EmailService(JavaMailSender javaMailSender, SpringTemplateEngine templateEngine) {
+        this.javaMailSender = javaMailSender;
+        this.templateEngine = templateEngine;
+    }
 
     @Async
     public void sendEmail(
@@ -54,7 +56,7 @@ public class EmailService {
     @Async
     protected void Send(String to, String subject, String templateName, MimeMessage mimeMessage, MimeMessageHelper helper, Map<String, Object> properties) throws MessagingException {
         Context context = new Context();
-        context.equals(properties);
+        context.setVariables(properties);
 
         helper.setFrom("contact@aynur.com");
         helper.setTo(to);
@@ -76,12 +78,12 @@ public class EmailService {
             String subject) throws MessagingException {
         String templateName;
         if (emailTemplate == null) {
-            templateName = "confirm-email";
+            templateName = "reset_password";
         } else {
             templateName = emailTemplate.getName();
         }
 
-        //Configure Mail Sender
+        // Configure Mail Sender
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
@@ -89,9 +91,10 @@ public class EmailService {
                 StandardCharsets.UTF_8.name());
 
         Map<String, Object> properties = new HashMap<>();
-        properties.put("username", username);
+        properties.put("username", (username != null) ? username : "User");
         properties.put("link", resetUrl);
 
         Send(to, subject, templateName, mimeMessage, helper, properties);
     }
+
 }
