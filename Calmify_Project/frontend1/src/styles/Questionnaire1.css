@@ -1,121 +1,130 @@
-/* Reset des styles spécifiques au questionnaire */
+
+/* Reset styles specific to the questionnaire */
 .questionnaire-container *,
 .questionnaire-container *::before,
 .questionnaire-container *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in the element's total width and height */
+    margin: 0; /* Removes margin */
+    padding: 0; /* Removes padding */
+    font-family: 'Poppins', serif !important;
 }
 
+/* Main container for the questionnaire */
 .questionnaire-container {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #BFD8E6 0%, #BFD8E6 50%, #D8E8D6 100%);
-    padding: 2rem;
+    min-height: 100vh; /* Container takes at least the full height of the viewport */
+    /*width: 100%; /* Full width */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+    background: #93C7D3; /* Light blue background */
+    padding: 2rem; /* Padding around the container */
+
 }
 
+/* Center content */
 .questionnaire-content {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 3.5rem;
-    width: 100%;
-    max-width: 1100px; /* Augmentation de la largeur maximale */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 1rem; /* Padding inside the content box */
+    width: 90%; /* Full width */
+    max-width: 800px; /* Limits maximum width to 1100px */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: left; /* Ensure left alignment */
 }
 
+/* Header and subtitle styles */
 .questionnaire-content h1 {
-    color: #3B5066;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    font-size: 2rem;
-    font-weight: 600;
+    color: #93C7D3; /* Dark blue text color */
+    text-align: center; /* Center align text */
+    margin-bottom: 0.5rem; /* Space below the heading */
+    font-size: 2rem; /* Large font size */
+    font-weight: 600; /* Semi-bold font */
 }
 
 .questionnaire-content .subtitle {
-    color: #5089C6;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    color: #3B5066; /* Blue text color */
+    text-align: center; /* Center align text */
+    margin-bottom: 1rem; /* Space below the subtitle */
+    font-size: 1.1rem; /* Medium font size */
 }
 
+/* Adjust question block spacing */
 .question-block {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem; /* Space below each question block */
+    text-align: left; /* Align text to the left */
 }
 
 .question-text {
-    color: #3B5066;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    color: #3B5066; /* Dark blue text color */
+    font-size: 1.2rem; /* Medium-large font size */
+    margin-bottom: 0.5rem; /* Space below the question */
+    font-weight: 500; /* Medium font weight */
 }
 
 .options-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-    margin-left: 1rem;
+    display: flex ; /* Uses flexbox for layout */
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    gap: 0.1rem ; /* Space between options */
+    margin-left: 1rem; /* Space to the left of options */
 }
-
+/* Individual radio button and label styling */
 .radio-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    min-width: 150px;
+    display: flex; /* Uses flexbox for layout */
+    align-items: center; /* Aligns items vertically */
+    gap: 0.5rem; /* Space between the radio button and label */
+    cursor: pointer; /* Pointer cursor on hover */
+    min-width: 122px; /* Minimum width for labels */
 }
-
+/* Text for radio button labels */
 .radio-text {
-    color: #5089C6;
-    font-size: 0.9rem;
+    color: #5089C6; /* Blue text color */
+    font-size: 0.9rem; /* Small font size */
 }
 
 .radio-label input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 16px; /* Réduction de la taille */
-    height: 16px; /* Réduction de la taille */
-    border: 2px solid white; /* Contour blanc */
-    box-shadow: 0 0 0 1px #5089C6; /* Ajout d'une bordure bleue externe */
-    border-radius: 50%;
-    margin: 0;
-    cursor: pointer;
-    position: relative;
-    background-color: white;
+    appearance: none; /* Removes default browser styling */
+    -webkit-appearance: none; /* Removes default styling for WebKit browsers */
+    width: 16px; /* Width of the radio button */
+    height: 16px; /* Height of the radio button */
+    border: 2px solid white; /* White border */
+    box-shadow: 0 0 0 1px #5089C6; /* Blue outer border */
+    border-radius: 50%; /* Circular shape */
+    margin: 0; /* Removes margin */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* Position relative for pseudo-elements */
+    background-color: white; /* White background */
 }
 
 .radio-label input[type="radio"]:checked {
-    border-color: white;
-    background-color: #5089C6; /* Fond bleu quand sélectionné */
+    border-color: white; /* Keeps white border when checked */
+    background-color: #5089C6; /* Blue background when selected */
 }
 
 .radio-label input[type="radio"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px; /* Réduction de la taille du point central */
-    height: 6px; /* Réduction de la taille du point central */
-    background-color: white; /* Point blanc quand sélectionné */
-    border-radius: 50%;
+    content: ""; /* Required for the pseudo-element */
+    position: absolute; /* Absolute position relative to the parent */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset transform */
+    width: 6px; /* Width of the inner circle */
+    height: 6px; /* Height of the inner circle */
+    background-color: white; /* White inner circle */
+    border-radius: 50%; /* Circular shape */
 }
 
 .next-button {
-    background: linear-gradient(135deg, #BFD8E6 0%, #BFD8E6 100%);
-    color: #3B5066;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 25px;
-    float: right;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-    margin-top: 1rem;
+    background: linear-gradient(135deg, #BFD8E6 0%, #BFD8E6 100%); /* Gradient background */
+    color: #3B5066; /* Dark blue text color */
+    border: none; /* No border */
+    padding: 0.6rem 2rem; /* Padding around the text */
+    border-radius: 25px; /* Rounded corners */
+    float: right; /* Aligns button to the right */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Medium font size */
+    transition: background-color 0.3s; /* Transition for hover effects */
+    margin-top: 1rem; /* Space above the button */
 }
 
 .next-button:hover {
-    background: linear-gradient(135deg, #BFD8E6 0%, #BFD8E6 100%);
+    background: linear-gradient(135deg, #BFD8E6 0%, #BFD8E6 100%); /* Maintains the same gradient on hover */
 }

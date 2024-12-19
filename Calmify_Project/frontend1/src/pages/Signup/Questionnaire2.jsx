@@ -21,34 +21,36 @@ const Questionnaire2 = () => {
     const questions = [
         {
             id: 'concentration',
-            text: 'Avez-vous des difficultés à vous concentrer sur une tâche ou à rester attentif pendant longtemps ?'
+            text: 'Do you have difficulty concentrating on a task or staying focused for a long time?'
         },
         {
             id: 'pressure',
-            text: 'Ressentez-vous une sensation de pression constante, même lorsque vous n’avez rien d’urgent à faire ?'
+            text: 'Do you feel a constant sense of pressure, even when you have nothing urgent to do?'
         },
         {
             id: 'support',
-            text: 'Pensez-vous avoir besoin d’un soutien extérieur pour mieux gérer votre stress ?'
+            text: 'Do you think you need external support to better manage your stress?'
         },
         {
             id: 'overload',
-            text: 'Subissez-vous une surcharge de travail fréquente ou permanente ?'
+            text: 'Do you often experience frequent or permanent work overload?'
         },
         {
             id: 'fatigue',
-            text: 'Ressentez-vous souvent une fatigue inexpliquée, même après une nuit complète de sommeil ?'
+            text: 'Do you often feel unexplained fatigue, even after a full night’s sleep?'
         }
     ];
 
+
     const options = [
-        { value: '0', label: '0 : Pas du tout' },
-        { value: '1', label: '1 : Faiblement' },
-        { value: '2', label: '2 : Un peu' },
-        { value: '3', label: '3 : Assez' },
-        { value: '4', label: '4 : Beaucoup' },
-        { value: '5', label: '5 : Extrêmement' }
+        { value: '0', label: 'Not at all' },
+        { value: '1', label: 'Slightly' },
+        { value: '2', label: 'Somewhat' },
+        { value: '3', label: 'Fairly' },
+        { value: '4', label: 'A lot' },
+        { value: '5', label: 'Extremely' }
     ];
+
 
     return (
         <div className="questionnaire-step2-container">

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/Questionnaire1.css";
 
+// State for storing user responses
 const Questionnaire1 = () => {
     const [answers, setAnswers] = useState({
         headaches: '',
@@ -11,7 +12,7 @@ const Questionnaire1 = () => {
         irritability: '',
         appointments: ''
     });
-
+    // Handle changes to responses
     const handleAnswerChange = (question, value) => {
         setAnswers(prev => ({
             ...prev,
@@ -19,43 +20,49 @@ const Questionnaire1 = () => {
         }));
     };
 
+    // Questions to display in the questionnaire
     const questions = [
         {
             id: 'headaches',
-            text: 'Avez-vous des maux de tête ou des migraines ?'
+            text: 'Do you experience headaches or migraines?'
         },
         {
             id: 'sleep',
-            text: 'Votre sommeil est-il perturbé (réveils, insomnies, hypersomnies) ?'
+            text: 'Is your sleep disrupted (waking up, insomnia, hypersomnia)?'
         },
         {
             id: 'timeManagement',
-            text: 'Avez-vous l\'impression de ne jamais avoir le temps de faire les choses ?'
+            text: 'Do you feel like you never have enough time to get things done?'
         },
         {
             id: 'irritability',
-            text: 'Les autres vous énervent-ils ?'
+            text: 'Do other people irritate you?'
         },
         {
             id: 'appointments',
-            text: 'Oubliez-vous souvent des rendez-vous ?'
+            text: 'Do you often forget appointments?'
         }
     ];
 
+
+    // Options for each question
     const options = [
-        { value: '0', label: '0 : Pas du tout' },
-        { value: '1', label: '1 : Faiblement' },
-        { value: '2', label: '2 : Un peu' },
-        { value: '3', label: '3 : Assez' },
-        { value: '4', label: '4 : Beaucoup' },
-        { value: '5', label: '5 : Extrêmement' }
+        { value: '0', label: 'Not at all' },
+        { value: '1', label: 'Slightly' },
+        { value: '2', label: 'Somewhat' },
+        { value: '3', label: 'Fairly' },
+        { value: '4', label: 'A lot' },
+        { value: '5', label: 'Extremely' }
     ];
+
 
     return (
         <div className="questionnaire-container">
+            {/* Main content area */}
             <div className="questionnaire-content">
-                <h1>Questionnaire de Stress</h1>
-                <p className="subtitle">Veuillez répondre aux questions suivantes :</p>
+                <h1>Stress Questionnaire</h1>
+                <p className="subtitle">Please answer the following questions :</p>
+                {/* Questions and options */}
 
                 <div className="questions-container">
                     {questions.map((question, index) => (
@@ -78,6 +85,7 @@ const Questionnaire1 = () => {
                         </div>
                     ))}
                 </div>
+                {/* Navigation button */}
                 <Link to="/Questionnaire2">
                     <button className="next-button">Next</button>
                 </Link>
