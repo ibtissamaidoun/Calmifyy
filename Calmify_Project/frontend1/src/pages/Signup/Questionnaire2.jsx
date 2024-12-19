@@ -55,7 +55,7 @@ const Questionnaire2 = () => {
     return (
         <div className="questionnaire-step2-container">
             <div className="questionnaire-step2-content">
-                <h1>stress Questionnaire</h1>
+                <h1>Stress Questionnaire</h1>
                 <p className="subtitle-step2">Please answer the following questions :</p>
 
                 <div className="questions-step2-container">

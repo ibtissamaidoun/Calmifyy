@@ -86,41 +86,46 @@ const Signup = () => {
                                 value={formData.phoneNumber}
                                 onChange={handleChange}
                             />
-                            <input
-                                type="date"
-                                name="dateOfBirth"
-                                placeholder="Date of Birth"
-                                value={formData.dateOfBirth}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                name="gender"
-                                placeholder="Gender"
-                                value={formData.gender}
-                                onChange={handleChange}
-                            />
+                            <div className="date-gender-container">
+                                <input
+                                    type="date"
+                                    name="dateOfBirth"
+                                    placeholder="Date of Birth"
+                                    value={formData.dateOfBirth}
+                                    onChange={handleChange}
+                                />
+                                <select
+                                    name="gender"
+                                    value={formData.gender}
+                                    onChange={handleChange}
+                                >
+                                    <option value="" disabled>Gender</option>
+                                    <option value="Man">Man</option>
+                                    <option value="Women">Women</option>
+                                </select>
+
+                            </div>
                             <input
                                 type="text"
                                 name="educationalLevel"
                                 placeholder="Educational level"
-                                value={formData.educationalLevel}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                name="university"
-                                placeholder="University"
-                                value={formData.university}
-                                onChange={handleChange}
-                            />
+                                    value={formData.educationalLevel}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    name="university"
+                                    placeholder="University"
+                                    value={formData.university}
+                                    onChange={handleChange}
+                                />
 
-                            <div className="form-footer">
-                                <p className="learn-more">Learn how Calmify helps you manage stress</p>
+                                <div className="form-footer">
+                                    <p className="learn-more">Learn how Calmify helps you manage stress</p>
 
-                                <button type="submit" className="continue-btn">Continue</button>
+                                    <button type="submit" className="continue-btn">Continue</button>
 
-                            </div>
+                                </div>
                         </form>
                     </div>
                 </div>

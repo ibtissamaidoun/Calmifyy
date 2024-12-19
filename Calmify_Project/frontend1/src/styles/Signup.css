@@ -1,213 +1,282 @@
-html, body {
+/* Applique les styles de base au HTML et au body */
+* {
     margin: 0;
     padding: 0;
-    height: 100%; /* Assurez-vous que le body prend toute la hauteur de la fenêtre */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f0f0f0; /* Choisissez une couleur de fond appropriée */
+    box-sizing: border-box;
+    font-family: 'Poppins', serif !important;
 }
+/*html, body {*/
+/*    margin: 0; !* Retire les marges par défaut *!*/
+/*    padding: 0; !* Retire les paddings par défaut *!*/
+/*    height: 80%; !* Fait que le body occupe toute la hauteur de la fenêtre *!*/
+/*    display: flex; !* Utilise flexbox pour centrer le contenu *!*/
+/*    justify-content: center; !* Centre horizontalement *!*/
+/*    align-items: center; !* Centre verticalement *!*/
+/*    background: #f0f0f0; !* Couleur de fond gris clair *!*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    overflow: hidden; !* Empêche le défilement de la page *!*/
+/*}*/
+
+/* Conteneur principal de la page d'inscription */
 .signup-container {
-    width: 70vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
+    /*width: 90%; !* Occupe 90% de la largeur de l'écran *!*/
+    /*max-width: 800px; !* Largeur maximale de 800px *!*/
+    /*height: 90%; !* Occupe 90% de la hauteur de l'écran *!*/
+    /*max-height: 700px; !* Hauteur maximale de 800px laaaaaaaaaaaaa le changement  *!*/
+    /*display: flex; !* Utilise flexbox pour centrer les éléments internes *!*/
+    /*justify-content: center; !* Centre horizontalement *!*/
+    /*align-items: center; !* Centre verticalement *!*/
+    /*background: white; !* Couleur de fond blanche *!*/
+    /*border-radius: 20px; !* Bords arrondis *!*/
+    /*overflow: hidden; !* Cache tout débordement *!*/
+    /*box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); !* Ajoute une ombre subtile *!*/
+    min-height: 100vh; /* Container takes at least the full height of the viewport */
+    width: 100%; /* Full width */
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+    background: #ffffff; /* Light blue background */
+    padding: 2rem; /* Padding around the container */
 }
 
+/* Carte principale qui contient les deux côtés */
 .signup-card {
-    width: 80%;
-    height: 80%;
-    background: linear-gradient(to right, #CDE4D2 0%, #E0F2F1 100%); /* Nouveau dégradé de gauche à droite */
-    border-radius: 20px;
-    justify-content: center; /* Centrage horizontal des contenus */
-    display: flex;
-    justify-content: center;
-
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;/* Occupe 80% de la largeur du conteneur */
+    height: 100%; /* Prend toute la hauteur du conteneur */
+    background: linear-gradient(to right, #CDE4D2 0%, #E0F2F1 100%); /* Dégradé du fond */
+    border-radius: 20px; /* Bords arrondis */
+    display: flex; /* Utilise flexbox pour organiser les côtés gauche et droit */
+    flex: 1; /* S'étend pour occuper tout l'espace disponible */
+    justify-content: center; /* Centre horizontalement le contenu */
+    overflow: hidden; /* Cache les débordements */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Ombre subtile */
 }
 
-/* Left Side Styles */
+/* Styles pour la partie gauche */
 .left-side {
-    flex: 1;
-    position: relative;
-    background: linear-gradient(135deg, #CDE4D2 0%, #94B6C5 50%, #A9D1E0 100%); /* Applique le même dégradé */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
+    flex: 1; /* Occupe la moitié de la largeur de la carte */
+    position: relative; /* Position pour placer les éléments enfants */
+    background: #93C7D3; /* Dégradé */
+    display: flex; /* Utilise flexbox */
+    flex-direction: column; /* Empile les éléments verticalement */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    text-align: center; /* Aligne le texte au centre */
+    overflow: hidden; /* Cache les débordements */
 }
 
+/* Style pour l'arc décoratif */
 .arc {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../assets/arc.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 0;
-
+    position: absolute; /* Position absolue par rapport au parent */
+    left: 0; /* Aligné à gauche */
+    top: 0; /* Aligné en haut */
+    right: 0; /* Étend à droite */
+    bottom: 0; /* Étend en bas */
+    background-image: url('../assets/arc.svg'); /* Image d'arrière-plan */
+    background-size: cover; /* L'image couvre tout l'espace */
+    background-repeat: no-repeat; /* Empêche la répétition */
+    z-index: 0; /* Envoyé derrière les autres éléments */
 }
 
-.arc-svg {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: scaleX(0.3) translateY(-50%);
-    width: 10%;
-    height: 10%;
-    z-index: 0;
-}
-
+/* Icone de lotus */
 .lotus-icon {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 60px;
-    height: 60px;
-    z-index: 1;
+    position: absolute; /* Position absolue pour placer en haut à droite */
+    top: 20px; /* À 20px du haut */
+    right: 20px; /* À 20px de la droite */
+    width: 50px; /* Largeur de 50px */
+    height: 50px; /* Hauteur de 50px */
+    z-index: 1; /* Devant l'arc */
 }
 
+/* Vagues décoratives */
 .wave {
-    position: absolute;
-    width: 200px;
-    height: auto;
-    opacity: 0.9;
+    position: absolute; /* Position absolue dans le parent */
+    width: 150px; /* Largeur fixe */
+    height: auto; /* Hauteur proportionnelle */
+    opacity: 0.9; /* Légèrement transparente */
 }
 
+/* Vague en haut */
 .wave-top {
-    top: 0; /* Ajusté pour positionner en haut */
-    left: 0; /* Ajusté pour positionner à gauche */
-    transform: rotate(0deg); /* Rendre horizontal */
-    width: 50%; /* Étendre sur toute la largeur */
+    top: 0; /* Alignée en haut */
+    left: 0; /* Alignée à gauche */
+    width: 50%; /* Largeur de 50% de l'écran */
 }
 
+/* Vague en bas */
 .wave-bottom {
-    bottom: 0; /* Ajusté pour positionner en bas */
-    right: 0; /* Ajusté pour positionner à droite */
-    transform: rotate(0deg); /* Rendre horizontal */
-    width: 50%; /* Étendre sur toute la largeur */
+    bottom: 0; /* Alignée en bas */
+    right: 0; /* Alignée à droite */
+    width: 50%; /* Largeur de 50% de l'écran */
 }
 
+/* Icône de méditation */
 .meditation-icon {
-    position: relative;
-    z-index: 2;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
+    position: relative; /* Position relative pour bien centrer */
+    z-index: 2; /* Devant les autres éléments */
+    width: 180px; /* Taille fixe */
+    height: 180px; /* Taille fixe */
+    margin-bottom: 20px; /* Espace sous l'icône */
 }
 
+/* Titre de la section gauche */
 .left-side h2 {
-    position: relative;
-    z-index: 2;
-    color: #2c3e50;
-    font-size: 24px;
-    line-height: 1.4;
-    margin-top: 20px;
+    position: relative; /* Position par rapport à l'icône */
+    z-index: 2; /* Devant le fond */
+    color: #2c3e50; /* Couleur du texte */
+    font-size: 18px; /* Taille de la police */
+    line-height: 1.4; /* Espacement entre les lignes */
+    margin: 0 20px; /* Espace autour du texte */
+    margin-top: 20px; /* Espace en haut */
 }
 
-/* Right Side Styles */
+/* Styles pour la partie droite */
 .right-side {
-    flex: 1;
-    padding: 40px;
-    background: transparent; /* Modifié de white à transparent */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1; /* Occupe la moitié de la largeur */
+    padding: 30px; /* Espacement intérieur */
+    background: transparent; /* Transparent pour montrer le fond */
+    display: flex; /* Utilise flexbox */
+    align-items: center; /* Centre verticalement */
+    flex-direction: column; /* Organise les éléments verticalement */
+    justify-content: center; /* Centre verticalement */
 }
 
+/* Conteneur du formulaire */
 .form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    width: 100%;
-    background: transparent; /* Assurez-vous que c'est transparent ou ajustez selon besoin */
+    max-width: 300px; /* Largeur maximale du formulaire */
+    margin: 0 auto; /* Centre horizontalement */
+    width: 300px; /* Occupe toute la largeur */
+    background: transparent; /* Aucun fond */
 }
+
+/* Titre principal */
 h1 {
-    color: #2c3e50;
-    font-size: 32px;
-    margin-bottom: 8px;
+    font-size: 2rem; /* Large font size */
+    color: #2c3e50; /* Couleur du texte */
+     /* Taille de la police */
+    margin-bottom: 10px; /* Espace en dessous */
+    text-align: center; /* Centre le texte */
 }
 
+/* Sous-titre */
 .subtitle {
-    color: #7f8c8d;
-    margin-bottom: 30px;
+    color: #7f8c8d; /* Couleur grise */
+    margin-bottom: 6px; /* Espace en dessous */
+    text-align: center; /* Centre le texte */
+    font-size: 15px;
 }
 
+/* Style des formulaires */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: flex; /* Utilise flexbox */
+    flex-direction: column; /* Organise les champs verticalement */
+    gap: 12px; /* Espace entre les champs */
 }
 
+/* Style des champs */
 input {
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    background: white;
+    padding: 8px 10px; /* Espacement intérieur */
+    border: 1px solid #e0e0e0; /* Bord gris clair */
+    border-radius: 8px; /* Bords arrondis */
+    font-size: 16px; /* Taille de la police */
+    transition: border-color 0.3s ease; /* Transition fluide pour le focus */
+    background: white; /* Fond blanc */
 }
 
+/* Style quand un champ est sélectionné */
 input:focus {
-    outline: none;
-    border-color: #94B6C5;
-    box-shadow: 0 0 0 3px rgba(148, 182, 197, 0.1);
+    outline: none; /* Retire la bordure par défaut */
+    border-color: #94B6C5; /* Change la couleur de la bordure */
+    box-shadow: 0 0 0 3px rgba(148, 182, 197, 0.1); /* Ajoute une ombre légère */
 }
 
+/* Pied de formulaire */
 .form-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
+    display: flex; /* Utilise flexbox */
+    flex-direction: column; /* Organise verticalement */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre horizontalement */
+    gap: 8px; /* Espace entre les éléments */
+    margin-top: 10px; /* Espace au-dessus */
 }
 
+/* Lien "en savoir plus" */
 .learn-more {
-    color: #7f8c8d;
-    font-size: 14px;
-    margin: 0;
-    cursor: pointer;
+    color: #7f8c8d; /* Couleur grise */
+    font-size: 15px; /* Taille de la police */
+    margin: 0; /* Retire les marges */
+    cursor: pointer; /* Curseur de clic */
+    text-align: center; /* Centre le texte */
 }
 
+/* Bouton de soumission */
 .continue-btn {
-    background: #94B6C5;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    background: #93C7D3; /* Couleur de fond */
+    color: #2c3e50; /* Couleur du texte */
+    border: none; /* Retire les bordures */
+    padding: 12px 24px; /* Espacement intérieur */
+    border-radius: 8px; /* Bords arrondis */
+    cursor: pointer; /* Curseur de clic */
+    font-size: 16px; /* Taille de la police */
+    transition: background-color 0.3s ease; /* Transition fluide pour le hover */
+    width: 100%; /* Occupe toute la largeur */
 }
 
+/* Effet au survol du bouton */
 .continue-btn:hover {
-    background: #7fa1b3;
+    background: #7fa1b3; /* Change la couleur de fond */
 }
 
+/* Styles pour les écrans de petite taille */
 @media (max-width: 768px) {
     .signup-card {
-        flex-direction: column;
-        width: 95%;
-        height: auto;
+        flex-direction: column; /* Organise verticalement */
+        width: 100%; /* Prend toute la largeur */
+        height: auto; /* Ajuste la hauteur automatiquement */
     }
 
     .left-side {
-        padding: 40px 20px;
-        min-height: 300px;
+        padding: 20px; /* Réduit l'espacement */
+        min-height: 300px; /* Hauteur minimale */
+        text-align: center; /* Centre le texte */
     }
 
     .right-side {
-        padding: 20px;
+        padding: 20px; /* Réduit l'espacement */
+        text-align: center; /* Centre le texte */
     }
 
     .form-container {
-        max-width: 100%;
+        max-width: 100%; /* Permet au formulaire de s'étendre */
     }
 
+}
+.date-gender-container {
+    display: flex; /* Flexbox pour l'alignement horizontal */
+    gap: 10px; /* Espacement entre les champs */
+}
 
+.date-gender-container input {
+    flex: 1; /* Les champs occupent chacun 50% */
+}
+.date-gender-container input[name="gender"] {
+    flex: none; /* Désactive l'expansion automatique */
+    width: 30%; /* Définit une largeur spécifique plus petite */
+}
+.date-gender-container select {
+    flex: none; /* Désactive l'expansion automatique */
+    width: 30%; /* Largeur plus petite */
+    padding: 8px 10px; /* Ajoute un espacement intérieur */
+    border: 1px solid #e0e0e0; /* Bord gris clair */
+    border-radius: 8px; /* Bords arrondis pour correspondre aux champs */
+    font-size: 16px; /* Taille de police */
+    background: white; /* Fond blanc */
+    transition: border-color 0.3s ease; /* Transition fluide pour le focus */
+}
+
+.date-gender-container select:focus {
+    outline: none; /* Retire la bordure par défaut */
+    border-color: #94B6C5; /* Change la couleur de la bordure */
+    box-shadow: 0 0 0 3px rgba(148, 182, 197, 0.1); /* Ajoute une ombre légère */
 }
