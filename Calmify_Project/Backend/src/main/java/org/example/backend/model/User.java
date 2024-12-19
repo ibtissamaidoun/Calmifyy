@@ -107,17 +107,17 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
-<<<<<<< HEAD
+
     public String getFirstName() {
         return firstName;
     }
     public String getLastName() {
-       return lastName;
-=======
+        return lastName;
+    }
 
     public Long getId() {
         return id;
->>>>>>> chaimae_Logout
+
     }
 
     public Boolean getQuestionnaireCompleted() {
