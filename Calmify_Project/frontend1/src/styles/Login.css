@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', serif;
 }
 
 /* Main Container */
@@ -106,7 +106,7 @@
 
 /* Hover effect for eye icon */
 .password-toggle:hover .password-icon {
-    color: #3b71ca; /* Highlighted color on hover */
+    color: #93C7D3; /* Highlighted color on hover */
 }
 
 
@@ -175,7 +175,7 @@
     width: 100%;
     padding: 16px 10px 8px; /* Top padding for the label, bottom padding for text */
     font-size: 16px;
-    border: 1px solid #535bf2;
+    border: 1px solid #597A82;
     border-radius: 8px; /* Rounded corners */
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -184,8 +184,8 @@
 
 /* Focus effect on the input field */
 .floating-input:focus {
-    border-color: #3b71ca;
-    box-shadow: 0 0 3px rgba(59, 113, 202, 0.5); /* Optional glow effect */
+    border-color: #597A82; /* New border color */
+    box-shadow: 0 0 3px rgba(147, 199, 211, 0.5); /* New shadow color */
 }
 
 /* Placeholder hidden by default */
@@ -200,7 +200,7 @@
     left: 15px; /* Spacing from the left */
     transform: translateY(-50%); /* Proper centering */
     font-size: 16px;
-    color: #aaa; /* Default label color */
+    color: #899ca0; /* Default label color */
     pointer-events: none; /* Disable interactions with the label */
     transition: all 0.3s ease; /* Smooth transition for position and color */
 }
@@ -211,13 +211,13 @@
     top: -10px; /* Float label above the input box */
     left: 10px; /* Slight adjustment to the left */
     font-size: 12px; /* Smaller font size for floating label */
-    color: #83A8F4; /* Change color to match active input border */
+    color: #93C7D3; /* Change color to match active input border */
     font-weight: bold; /* Optional: Make the floating label bold */
 }
 
 /* Optional hover effect for inputs */
 .floating-input:hover {
-    border-color: #3b71ca;
+    border-color: #597A82;
 }
 
 
