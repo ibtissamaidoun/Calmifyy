@@ -5,6 +5,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', serif !important;
 }
 
 .questionnaire-step2-container {
@@ -28,7 +29,7 @@
 }
 
 .questionnaire-step2-content h1 {
-    color: #3B5066; /* Dark blue text color */
+    color: #93C7D3; /* Dark blue text color */
     text-align: center; /* Center align text */
     margin-bottom: 0.5rem; /* Space below the heading */
     font-size: 2rem; /* Large font size */
@@ -36,7 +37,7 @@
 }
 
 .questionnaire-step2-content .subtitle-step2 {
-    color: #5089C6; /* Blue text color */
+    color: #3B5066; /* Blue text color */
     text-align: center; /* Center align text */
     margin-bottom: 1rem; /* Space below the subtitle */
     font-size: 1.1rem; /* Medium font size */
