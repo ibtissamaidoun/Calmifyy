@@ -22,12 +22,12 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expirationTime;
 
-<<<<<<< HEAD
+
     /**
      * Méthode pour obtenir la clé de signature à partir de la clé secrète.
      * La clé doit être encodée en Base64.
      */
-=======
+
     // Liste noire des tokens invalidés
     private final Set<String> tokenBlacklist = new HashSet<>();
 
@@ -39,12 +39,8 @@ public class JwtUtil {
         return tokenBlacklist.contains(token);
     }
 
-    public boolean validateToken(String token, String email) {
-        String subject = extractEmail(token);
-        return (subject.equals(email) && !isTokenExpired(token) && !isTokenBlacklisted(token));
-    }
 
->>>>>>> chaimae_Logout
+
     public SecretKey getSigningKey() {
         byte[] keyBytes = Base64.getDecoder().decode(secretKey); // Décoder la clé secrète en Base64
         return Keys.hmacShaKeyFor(keyBytes); // Créer une clé HMAC-SHA
@@ -62,20 +58,19 @@ public class JwtUtil {
                 .compact();
     }
 
-<<<<<<< HEAD
+
     /**
      * Valide un token JWT en comparant l'email et en vérifiant l'expiration.
      */
     public boolean validateToken(String token, String email) {
         try {
             String subject = extractEmail(token);
-            return (subject.equals(email) && !isTokenExpired(token));
+            return (subject.equals(email) && !isTokenExpired(token) && !isTokenBlacklisted(token));
         } catch (Exception e) {
             return false; // Retourne false si le token est invalide ou expiré
         }
     }
-=======
->>>>>>> chaimae_Logout
+
 
     /**
      * Extrait l'email (subject) du token JWT.
