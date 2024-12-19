@@ -34,24 +34,28 @@
 // export default App
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import "./App.css"
+import './index.css'
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/Signup/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import QuestionnaireStep1 from "./pages/Signup/QuestionnaireStep1.jsx";
-import QuestionnaireStep2 from "./pages/Signup/QuestionnaireStep2.jsx";
+import Questionnaire1 from "./pages/Signup/Questionnaire1.jsx";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
 const App = () => {
     return (
         <Router>
             <Routes>
                 {/*<Route path="/" element={<Login />} />*/}
+                <Route path="/Questionnaire1" element={<Questionnaire1 />} />
+                <Route path="/Questionnaire2" element={<Questionnaire2 />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/Questionnaire1" element={<QuestionnaireStep1 />} />
-                <Route path="/Questionnaire2" element={<QuestionnaireStep2/>} />
                 <Route path="/forget-password" element={<ForgetPassword />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+
             </Routes>
         </Router>
                     );
