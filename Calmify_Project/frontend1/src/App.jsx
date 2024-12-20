@@ -33,7 +33,7 @@
 // }
 // export default App
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, {useState} from "react";
 import "./App.css"
 import './index.css'
 
@@ -45,12 +45,13 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
 const App = () => {
+    const [questionnaireData, setQuestionnaireData] = useState({});
     return (
         <Router>
             <Routes>
                 {/*<Route path="/" element={<Login />} />*/}
-                <Route path="/Questionnaire1" element={<Questionnaire1 />} />
-                <Route path="/Questionnaire2" element={<Questionnaire2 />} />
+                <Route path="/Questionnaire1" element={<Questionnaire1 setQuestionnaireData={setQuestionnaireData}/>} />
+                <Route path="/Questionnaire2" element={<Questionnaire2 questionnaireData={questionnaireData} />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forget-password" element={<ForgetPassword />} />

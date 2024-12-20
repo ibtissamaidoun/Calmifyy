@@ -74,7 +74,11 @@ const Signup = () => {
             setSuccess(true); // Show success message
             console.log("User registered successfully:", response.data);
 
-            // Optionnel : Redirigez l'utilisateur ou effacez les champs du formulaire
+            const userId = response.data.user.id; // Correction ici
+            localStorage.setItem("userId", userId);
+            console.log(localStorage.getItem("userId"));
+     // Stocker l'ID utilisateur dans le localStorage
+            alert("Inscription réussie !");// Optionnel : Redirigez l'utilisateur ou effacez les champs du formulaire
             setFormData({
                 fullName: '',
                 email: '',
@@ -85,6 +89,8 @@ const Signup = () => {
                 educationalLevel: '',
                 university: ''
             });
+
+
             navigate("/Questionnaire1");
         } catch (err) {
             console.error("Erreur lors de l'inscription :", err.response?.data || err.message);
@@ -127,7 +133,7 @@ const Signup = () => {
                                     onChange={handleChange}
                                     required
                                 />
-                                <label className="floating-label-text-Signup">Full Name</label>
+                                <label className="floating-label-text-Signup">FirstName LastName</label>
                             </div>
 
                             {/* Email Address */}
