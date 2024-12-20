@@ -85,7 +85,7 @@ public class UserController {
             User user = userService.getUserByEmail(email);
             // TODO: Envoyer le token par email (intégrer un service d'email ici)
             System.out.println("Reset token: " + resetToken); // À remplacer par un envoi d'email
-            String resetLink = "http://localhost:3000/reset-password?token=" + resetToken;
+            String resetLink = "http://localhost:5173/reset-password?token=" + resetToken;
             String userFullName = user.getFirstName() + " " + user.getLastName();
 
             emailService.sendResetPasswordEmail(email,userFullName, EmailTemplateName.RESET_PASSWORD,resetLink,"Reset your password");
