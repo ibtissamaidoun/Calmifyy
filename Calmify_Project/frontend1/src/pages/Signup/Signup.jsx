@@ -6,7 +6,13 @@ import waveTop from '../../assets/wave-top.svg';
 import waveBottom from '../../assets/wave-bottom.svg';
 import arc from '../../assets/arc.svg';
 import meditation from '../../assets/meditation.svg';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 const Signup = () => {
+    // State for password visibility toggle
+    const [showPassword, setShowPassword] = useState(false);
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -55,65 +61,125 @@ const Signup = () => {
                 <div className="right-side">
                     <div className="form-container">
                         <h1>Create an account</h1>
-                        <p className="subtitle">Let's start your journey to balance and calmness.</p>
+                        <p className="subtitle">Let&#39;s start your journey to balance and calmness.</p>
 
                         <form onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                name="fullName"
-                                placeholder="Full Name"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email Address"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="tel"
-                                name="phoneNumber"
-                                placeholder="Phone Number"
-                                value={formData.phoneNumber}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="date"
-                                name="dateOfBirth"
-                                placeholder="Date of Birth"
-                                value={formData.dateOfBirth}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                name="gender"
-                                placeholder="Gender"
-                                value={formData.gender}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                name="educationalLevel"
-                                placeholder="Educational level"
-                                value={formData.educationalLevel}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                name="university"
-                                placeholder="University"
-                                value={formData.university}
-                                onChange={handleChange}
-                            />
+                            {/* Full Name */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type="text"
+                                    name="fullName"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.fullName}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">Full Name</label>
+                            </div>
+
+                            {/* Email Address */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">Email Address</label>
+                            </div>
+
+                            {/* Password with toggle */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">Password</label>
+                                <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? <Visibility className="password-icon"/> : <VisibilityOff className="password-icon"/>}
+        </span>
+                            </div>
+
+                            {/* Phone Number */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type="tel"
+                                    name="phoneNumber"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.phoneNumber}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">Phone Number</label>
+                            </div>
+
+                            <div className="date-gender-container">
+                                <div className="date-gender-container">
+                                    {/* Date Of Birth */}
+                                    <div className="floating-label-Signup">
+                                        <input
+                                            type="date"
+                                            name="dateOfBirth"
+                                            className="floating-input-Signup"
+                                            placeholder=" "
+                                            required
+                                            value={formData.dateOfBirth}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="floating-label-text-Signup">Date of Birth</label>
+                                    </div>
+
+                                    {/* Gender */}
+                                    <div className="floating-label-Signup">
+                                        <select
+                                            name="gender"
+                                            className="floating-input-Signup"
+                                            required
+                                            value={formData.gender}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="" disabled selected>Gender</option>
+                                            <option value="Man">Man</option>
+                                            <option value="Woman">Woman</option>
+                                        </select>
+                                        <label className="floating-label-text-Signup">Gender</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            {/* Educational Level */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type="text"
+                                    name="educationalLevel"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.educationalLevel}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">Educational Level</label>
+                            </div>
+
+                            {/* University */}
+                            <div className="floating-label-Signup">
+                                <input
+                                    type="text"
+                                    name="university"
+                                    className="floating-input-Signup"
+                                    placeholder=" "
+                                    value={formData.university}
+                                    onChange={handleChange}
+                                />
+                                <label className="floating-label-text-Signup">University</label>
+                            </div>
 
                             <div className="form-footer">
                                 <p className="learn-more">Learn how Calmify helps you manage stress</p>
