@@ -8,7 +8,9 @@ import arc from '../../assets/arc.svg';
 import meditation from '../../assets/meditation.svg';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import axiosInstance from "../../Utils/axios-instance"; // Import de l'instance Axios
+import axiosInstance from "../../Utils/axios-instance";
+import {useNavigate} from "react-router-dom";
+
 
 const Signup = () => {
     // State for password visibility toggle
@@ -27,6 +29,7 @@ const Signup = () => {
     });
 
     const [error, setError] = useState(null); // State for error handling
+    const navigate = useNavigate();
     const [success, setSuccess] = useState(false); // State for success message
 
     // Split fullName into firstName and lastName
@@ -67,7 +70,7 @@ const Signup = () => {
 
         try {
             // Call the API with Axios
-            const response = await axiosInstance.post("/users/Signup", requestData);
+            const response = await axiosInstance.post("/users/register", requestData);
             setSuccess(true); // Show success message
             console.log("User registered successfully:", response.data);
 
@@ -82,6 +85,7 @@ const Signup = () => {
                 educationalLevel: '',
                 university: ''
             });
+            navigate("/Questionnaire1");
         } catch (err) {
             console.error("Erreur lors de l'inscription :", err.response?.data || err.message);
             setError(err.response?.data || "An error occurred during signup.");
@@ -229,7 +233,9 @@ const Signup = () => {
 
                             <div className="form-footer">
                                 <p className="learn-more">Learn how Calmify helps you manage stress</p>
-                                <button type="submit" className="continue-btn">Continue</button>
+
+                                <button  type="submit" className="continue-btn">Continue</button>
+
                             </div>
                         </form>
                     </div>
