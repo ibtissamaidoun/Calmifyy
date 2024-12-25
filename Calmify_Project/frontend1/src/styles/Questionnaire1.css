@@ -23,7 +23,7 @@
 
 /* Center content */
 .questionnaire-content {
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    background: rgba(255, 255, 255, 1); /* Semi-transparent white background */
     border-radius: 15px; /* Rounded corners */
     padding: 1rem; /* Padding inside the content box */
     width: 90%; /* Full width */
