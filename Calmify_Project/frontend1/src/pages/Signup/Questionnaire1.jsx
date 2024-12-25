@@ -1,51 +1,36 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../styles/Questionnaire1.css";
+import axios from 'axios'; // Importation d'axios pour effectuer des requêtes HTTP
 
-// State for storing user responses
 const Questionnaire1 = () => {
-    const [answers, setAnswers] = useState({
-        headaches: '',
-        sleep: '',
-        timeManagement: '',
-        irritability: '',
-        appointments: ''
-    });
-    // Handle changes to responses
-    const handleAnswerChange = (question, value) => {
+    const [questions, setQuestions] = useState([]); // State pour les questions retournées par l'API
+    const [answers, setAnswers] = useState({}); // State pour stocker les réponses de l'utilisateur
+
+    // Fonction pour récupérer les questions depuis le backend
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/questions');
+                setQuestions(response.data); // Stocker les questions reçues dans le state
+            } catch (error) {
+                console.error("Erreur lors de la récupération des questions :", error);
+            }
+        };
+
+        fetchQuestions();
+    }, []); // Le tableau de dépendances est vide pour que cela s'exécute au chargement seulement
+
+    // Gérer les changements des réponses dans le state
+    const handleAnswerChange = (questionId, value) => {
         setAnswers(prev => ({
             ...prev,
-            [question]: value
+            [questionId]: value
         }));
     };
 
-    // Questions to display in the questionnaire
-    const questions = [
-        {
-            id: 'headaches',
-            text: 'Do you experience headaches or migraines?'
-        },
-        {
-            id: 'sleep',
-            text: 'Is your sleep disrupted (waking up, insomnia, hypersomnia)?'
-        },
-        {
-            id: 'timeManagement',
-            text: 'Do you feel like you never have enough time to get things done?'
-        },
-        {
-            id: 'irritability',
-            text: 'Do other people irritate you?'
-        },
-        {
-            id: 'appointments',
-            text: 'Do you often forget appointments?'
-        }
-    ];
-
-
-    // Options for each question
+    // Options pour chaque question
     const options = [
         { value: '0', label: 'Not at all' },
         { value: '1', label: 'Slightly' },
@@ -55,15 +40,13 @@ const Questionnaire1 = () => {
         { value: '5', label: 'Extremely' }
     ];
 
-
     return (
         <div className="questionnaire-container">
-            {/* Main content area */}
             <div className="questionnaire-content">
                 <h1>Stress Questionnaire</h1>
                 <p className="subtitle">Please answer the following questions :</p>
-                {/* Questions and options */}
 
+                {/* Questions dynamiques */}
                 <div className="questions-container">
                     {questions.map((question, index) => (
                         <div key={question.id} className="question-block">
@@ -85,7 +68,7 @@ const Questionnaire1 = () => {
                         </div>
                     ))}
                 </div>
-                {/* Navigation button */}
+                {/* Bouton de navigation */}
                 <Link to="/Questionnaire2">
                     <button className="next-button">Next</button>
                 </Link>
