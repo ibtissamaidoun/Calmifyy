@@ -77,7 +77,7 @@ const Signup = () => {
             const userId = response.data.user.id; // Correction ici
             localStorage.setItem("userId", userId);
             console.log(localStorage.getItem("userId"));
-     // Stocker l'ID utilisateur dans le localStorage
+            // Stocker l'ID utilisateur dans le localStorage
             alert("Inscription réussie !");// Optionnel : Redirigez l'utilisateur ou effacez les champs du formulaire
             setFormData({
                 fullName: '',

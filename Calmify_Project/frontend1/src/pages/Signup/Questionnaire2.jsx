@@ -63,12 +63,12 @@ const Questionnaire2 = () => {
     ];
 
     const options = [
-        { value: "0", label: "Not at all" },
-        { value: "1", label: "Slightly" },
-        { value: "2", label: "Somewhat" },
-        { value: "3", label: "Fairly" },
-        { value: "4", label: "A lot" },
-        { value: "5", label: "Extremely" },
+        { value: "1", label: "Not at all" },
+        { value: "2", label: "Slightly" },
+        { value: "3", label: "Somewhat" },
+        { value: "4", label: "Fairly" },
+        { value: "5", label: "A lot" },
+        { value: "6", label: "Extremely" },
     ];
 
     return (
