@@ -32,3 +32,4 @@ build/
 
 ### VS Code ###
 .vscode/
+Calmify_Project/Backend/src/main/resources/application.properties
