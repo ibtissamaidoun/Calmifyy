@@ -8,29 +8,35 @@ import numpy as np
 logging.getLogger("transformers").setLevel(logging.ERROR)
 transformers_logging.set_verbosity_error()
 
-# Example text for emotion prediction
+# Texte d'exemple pour la prédiction des émotions
 text = "I feel overwhelmed and scared about my exams."
 
-# Predict emotions
+# Prédire les émotions
 emotion_scores = predict_emotions(text)
 print(f"Scores d'émotions : {emotion_scores}")
 
-# Map emotions to stress
+# Mapper les émotions au niveau de stress
 stress_level = map_emotions_to_stress(emotion_scores)
 print(f"Niveau de stress estimé : {stress_level}")
 
-# Explain predictions using LIME
+# Expliquez les prédictions avec LIME
 explainer = LimeTextExplainer(class_names=["anger", "fear", "joy", "love", "sadness", "surprise"])
 
-# Define a prediction function for LIME
+# Définir une fonction de prédiction pour LIME
 def lime_predict(texts):
+    """
+    Prend en entrée une liste de textes et retourne un tableau
+    de scores pour chaque classe d'émotions (par texte).
+    """
     predictions = []
     for txt in texts:
         scores = predict_emotions(txt)
-        predictions.append([scores.get(cls, 0.0) for cls in explainer.class_names])
+        # Créer une liste ordonnée de scores pour chaque classe
+        class_scores = [scores.get(cls, 0.0) for cls in explainer.class_names]
+        predictions.append(class_scores)
     return np.array(predictions)
 
-# Generate explanation
+# Générer une explication
 try:
     explanation = explainer.explain_instance(
         text_instance=text,
@@ -38,7 +44,7 @@ try:
         num_features=5
     )
 
-    # Print LIME explanation
+    # Imprimer l'explication de LIME
     print("\nExplication des prédictions :")
     for word, importance in explanation.as_list():
         print(f"Mot : {word}, Importance : {importance}")
