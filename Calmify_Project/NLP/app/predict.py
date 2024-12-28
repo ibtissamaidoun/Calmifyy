@@ -1,23 +1,34 @@
-
 from transformers import pipeline
 
-# Load the emotion classifier model using PyTorch
+# Charger le modèle de classification d'émotions
 emotion_classifier = pipeline(
-    "text-classification", 
-    model="bhadresh-savani/distilbert-base-uncased-emotion", 
+    "text-classification",
+    model="bhadresh-savani/distilbert-base-uncased-emotion",
     framework="pt"
 )
 
 def predict_emotions(text):
     """
-    Predict emotions from the input text.
+    Prévoir les émotions à partir du texte d'entrée.
     """
+    # Utiliser le classificateur pour prédire les émotions
     results = emotion_classifier(text)
-    return {res['label']: res['score'] for res in results}
+
+    # Extraire les étiquettes (émotions) et leurs scores
+    emotion_scores = {res['label']: res['score'] for res in results}
+
+    # Mapper les émotions aux niveaux de stress
+    stress_level = map_emotions_to_stress(emotion_scores)
+
+    # Retourner les émotions et le niveau de stress
+    return {
+        "feelings": max(emotion_scores, key=emotion_scores.get),  # Emotion dominante
+        "stressLevel": stress_level
+    }
 
 def map_emotions_to_stress(emotion_scores):
     """
-    Map emotion scores to stress levels.
+    Mapper les scores des émotions aux niveaux de stress.
     """
     stress_levels = {"High": 0, "Moderate": 0, "Low": 0}
     for emotion, score in emotion_scores.items():
@@ -27,4 +38,6 @@ def map_emotions_to_stress(emotion_scores):
             stress_levels["Low"] += score
         elif emotion in ["surprise", "neutral"]:
             stress_levels["Moderate"] += score
+
+    # Retourner le niveau de stress avec le score le plus élevé
     return max(stress_levels, key=stress_levels.get)
