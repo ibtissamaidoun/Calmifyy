@@ -1,0 +1,117 @@
+.sidebar {
+    width: 250px;
+    background-color: white;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eaeaea;
+    padding-left: 20px ;
+    padding-bottom: 20px ;
+    padding-top: 20px ;
+}
+
+.sidebar-header {
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    font-weight: normal;
+}
+
+.sidebar-nav {
+    flex: 1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #666;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.sidebar-nav a.active {
+    background-color: #93C7D3;
+    color: white;
+}
+
+.sidebar-nav a.active .sidebar-icon {
+    color: white;
+}
+
+.sidebar-icon {
+    margin-right: 0.75rem;
+    color: #666;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 0.5rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+    background-color: #f5f5f5;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #93C7D3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+}
+
+.avatar span {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.username {
+    flex: 1;
+    text-align: left;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+

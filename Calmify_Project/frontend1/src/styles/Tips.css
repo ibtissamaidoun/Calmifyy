@@ -1,0 +1,32 @@
+/* Tips.css */
+.tips {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tips h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.tips ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tips ul li {
+    margin: 10px 0;
+    color: #34495e;
+}
+
+.tips ul li a {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+.tips ul li a:hover {
+    text-decoration: underline;
+}

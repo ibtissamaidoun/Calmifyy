@@ -1,0 +1,118 @@
+/* Style des événements */
+.fc-event {
+    background-color: var(--primary-color) !important;
+    color: var(--text-color) !important; /* Texte plus visible */
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 14px; /* Augmenter la taille de la police */
+    font-weight: bold; /* Rendre le texte plus gras */
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Gestion du texte long */
+}
+
+.fc-event:hover {
+    background-color: var(--hover-color) !important;
+    transform: scale(1.05);
+    transition: transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajouter une ombre au hover */
+}
+
+/* Texte du titre dans l'événement */
+.fc-event-title {
+    color: var(--text-color) !important;
+    font-size: 14px;
+    text-align: center;
+}
+/* Conteneur principal */
+.calendar-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Ombre plus visible */
+    border: 1px solid var(--border-color);
+}
+
+/* Titre du calendrier */
+.calendar-title {
+    text-align: center;
+    font-size: 36px; /* Augmenter la taille */
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Texte en majuscule */
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* Fond de l'en-tête */
+.fc-toolbar.fc-header-toolbar {
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Boutons dans l'en-tête */
+.fc-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.fc-button:hover {
+    background-color: var(--hover-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Style des colonnes */
+.fc-col-header-cell {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+}
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Appliquer l'animation au conteneur */
+.calendar-container {
+    animation: fadeIn 0.5s ease-in-out;
+}
+.fc-toolbar-title {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.fc-button {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fc-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.fc-button-active {
+    background-color: var(--highlight-color);
+}

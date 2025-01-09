@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import meditationImage from "../assets/meditation.png";
 import "../styles/Login.css";
 
@@ -13,6 +14,7 @@ export default function Login() {
     const [password, setPassword] = useState(""); // État pour le mot de passe
     const [error, setError] = useState(null); // État pour les erreurs
     const [showPassword, setShowPassword] = useState(false); // État pour afficher/masquer le mot de passe
+    const navigate = useNavigate();
 
     // Fonction pour basculer la visibilité du mot de passe
     const togglePasswordVisibility = () => {
@@ -29,6 +31,9 @@ export default function Login() {
 
             // Sauvegarder le token dans localStorage
             localStorage.setItem("token", token);
+
+            // Redirect to /dashboard
+            navigate("/dashboard");
 
             // Affiche un message de succès ou redirige vers une autre page
             alert(`Welcome ${user.firstName} ${user.lastName}!`);

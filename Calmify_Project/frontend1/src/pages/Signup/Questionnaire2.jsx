@@ -47,7 +47,7 @@ const Questionnaire2 = () => {
             console.log("Réponses enregistrées :", response.data);
 
             alert("Réponses enregistrées avec succès !");
-            navigate("/Login");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Erreur lors de l'envoi des réponses :", error.response?.data || error.message);
             alert("Une erreur est survenue lors de l'envoi des réponses.");
