@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   height: 100vh;
   background-color: #93c7d3; /* Couleur de fond vert clair */
-  padding: 20px; /* Ajouter du padding */
+  padding: 10px; /* Ajouter du padding */
 }
 
 .content {

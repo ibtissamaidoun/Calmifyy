@@ -1,5 +1,3 @@
-//Tips li en bas de dashboard
-//src/components/Tips.jsx
 import '../styles/Tips.css';
 
 const Tips = () => {
@@ -15,3 +13,4 @@ const Tips = () => {
 };
 
 export default Tips;
+

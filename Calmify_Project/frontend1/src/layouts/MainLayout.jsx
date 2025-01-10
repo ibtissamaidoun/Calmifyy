@@ -6,9 +6,9 @@ import './MainLayout.css'; // Importer le CSS
 
 const MainLayout = () => {
     return (
-        <div className="app">
+        <div className="app-mainlayout">
 
-            <div className="content">
+            <div className="content-mainlayout">
                 <Sidebar /> {/* Sidebar is always visible */}
                 <main>
                     <Outlet /> {/*  Where route content (like Dashboard) renders */}

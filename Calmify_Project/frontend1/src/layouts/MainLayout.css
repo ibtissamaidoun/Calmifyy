@@ -1,48 +1,55 @@
-.app {
+.app-mainlayout {
     display: flex;
-    margin: 0;
-    min-height: 100vh;        /* Full viewport height */
-    flex-direction: column; /* Stack navbar, content, and footer vertically */
-    background-color: #cdc410;
-    position: relative;
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: #93C7D3;
 }
 
-.content {
-    flex: 2; /* Take up remaining vertical space */
-    display: flex; /* Allow sidebar and main to sit side by side */
-    background-color: white; /* Fond blanc pour le contenu */
-    border-radius: 10px; /* Bordures arrondies */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    overflow: hidden; /* Empêche le débordement du contenu */
-    margin-left: 250px; /* Move margin to content instead of main */
+.content-mainlayout {
+    flex: 1;
+    display: flex;
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    margin-left: 240px; /* Remove left margin */
+    border-left: 1px solid #ccc; /* Add a separator line */
 }
 
 main {
     flex: 1;
-    padding: 2rem;
+    padding: 10px;
+    background-color: white;
     width: 100%;
-    background-color: #F5F5F5;
-    position: relative;
-    z-index: 1; /* Ensure main content is above sidebar */
 }
 
 /* Update sidebar positioning */
 .sidebar {
     position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 2; /* Ensure sidebar is above other content */
+    left: 1rem;
+    top: 1rem;
+    height: calc(100vh - 2rem);
+    background: white;
+    border-radius: 1rem 0 0 1rem;
+    z-index: 10;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    main {
-        margin-left: 0;
-        width: 100%;
+    .app {
+        padding: 0;
     }
+
     .content {
         margin-left: 0;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        left: 0;
+        top: 0;
+        height: 100vh;
+        border-radius: 0;
     }
 }
 

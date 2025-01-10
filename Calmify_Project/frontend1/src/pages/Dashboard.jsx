@@ -2,30 +2,24 @@ import { useEffect, useState } from 'react';
 import ShareLevel from '../components/ShareLevel';
 import StressLevelChart from '../components/StressLevelChart';
 import Tips from '../components/Tips';
-import axiosInstance from "../Utils/axios-instance.js"; // Import the Axios instance
 import '../styles/Dashboard.css';
 
-
 const Dashboard = () => {
-    const [stressLevel, setStressLevel] = useState(0); // State to store the stress level
-    useEffect(() => {
-        const fetchStressLevel = async () => {
-            try {
-                const response = await axiosInstance.get('/stress-level'); // Fetch stress level from the backend
-                setStressLevel(response.data.currentStressLevel); // Update state with the fetched stress level
-            } catch (error) {
-                console.error('Error fetching stress level:', error);
-            }
-        };
-        fetchStressLevel();
-    }, []);
+    const [userName, setUserName] = useState('Aya');
+
     return (
         <div className="dashboard">
-            <h2>Good morning!</h2>
+            <div className="dashboard-header">
+                <h2>Good morning, {userName}!</h2>
+                <div className="header-actions">
+                    <span className="plan-badge">Free plan</span>
+                    <button className="upgrade-button">Upgrade now</button>
+                </div>
+            </div>
+
             <div className="dashboard-content">
-                <div className="metrics-row"> {/*Top row with 4 metric cards*/}
-                    {/* Pass the stressLevel to ShareLevel */}
-                    <ShareLevel stressLevel={stressLevel} />
+                <div className="metrics-row">
+                    <ShareLevel />
                     <div className="metrics-card">
                         <h3>Your Joy level Today</h3>
                         <div className="metric-value">3</div>
@@ -40,11 +34,11 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className="chart-section"> {/* Middle section with chart*/}
+                <div className="chart-section">
                     <StressLevelChart />
                 </div>
 
-                <div className="tips-section"> {/* Right section with tips */}
+                <div className="tips-section">
                     <Tips />
                 </div>
             </div>
