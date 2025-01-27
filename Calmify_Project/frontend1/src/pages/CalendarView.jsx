@@ -35,32 +35,52 @@ const CalendarView = () => {
     }, [userId]); // L'effet se réexécute lorsque l'ID utilisateur change
 
     return (
-        <div className="calendar-container">
-            <h1 className="calendar-title">Calendrier des événements</h1>
-            <p style={{ textAlign: "center", color: "var(--text-color)" }}>
-                Bienvenue dans votre calendrier, où vous pouvez consulter vos événements !
-            </p>
-            <FullCalendar
-                plugins={[dayGridPlugin]} // Plugin pour la vue en grille journalière
-                initialView="dayGridMonth" // Vue initiale : mois
-                headerToolbar={{
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,dayGridWeek,dayGridDay',
-                }}
-                events={events} // Événements affichés dans le calendrier
-                locale="fr" // Langue française
-                buttonText={{
-                    today: 'Aujourd\'hui',
-                    month: 'Mois',
-                    week: 'Semaine',
-                    day: 'Jour',
-                }}
-                eventClick={(info) => {
-                    // Afficher les détails de l'événement lors du clic
-                    alert(`Titre : ${info.event.title}\nDescription : ${info.event.extendedProps.description}`);
-                }}
-            />
+        <div className="calendar-wrapper">
+            <div className="calendar-container">
+                <h1 className="calendar-title">EVENT CALENDAR</h1>
+                <p className="calendar-subtitle">
+                    Welcome to your calendar, where you can check your events!
+                </p>
+                <div className="calendar-content">
+                    <FullCalendar
+                        plugins={[dayGridPlugin]}
+                        initialView="dayGridMonth"
+                        headerToolbar={{
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                        }}
+                        events={events}
+                        eventContent={(eventInfo) => (
+                            <div style={{ whiteSpace: 'normal', padding: '10px' }}>
+                                <strong>{eventInfo.timeText}</strong>
+                                <div>{eventInfo.event.title}</div> {/*exp:meeting with psychologist*/}
+                            </div>
+                        )}
+                        locale="eng"
+                        height='20px'
+                        dayCellDidMount={(info) => {
+                            info.el.style.height = '20px'; // Set the desired height
+                        }}
+                        buttonText={{
+                            today: "Today",
+                            month: 'Month',
+                            week: 'Week',
+                            day: 'Day',
+                        }}
+                        dayHeaderFormat={{
+                            weekday: 'short',
+                        }}
+                        dayMaxEventRows={3} // Limit to 3 events per day
+                        moreLinkText={(num) => `+${num} more`} // Customize "more" link text
+
+                        eventClick={(info) => {
+                            alert(`Titre : ${info.event.title}\nDescription : ${info.event.extendedProps.description}`);
+                        }}
+                        viewClassNames="calendar-view"
+                    />
+                </div>
+            </div>
         </div>
     );
 };

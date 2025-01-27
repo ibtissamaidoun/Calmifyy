@@ -40,7 +40,7 @@ const Sidebar = () => {
                     <div className="avatar">
                         <span>A</span>
                     </div>
-                    <span className="username">User</span>
+                    <span className="username">Aya</span>
                     <ChevronDown size={16} />
                 </button>
             </div>
