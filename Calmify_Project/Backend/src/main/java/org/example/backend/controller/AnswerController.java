@@ -6,6 +6,7 @@ import org.example.backend.model.User;
 import org.example.backend.repository.AnswerRepository;
 import org.example.backend.repository.QuestionRepository;
 import org.example.backend.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,4 +90,28 @@ public class AnswerController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/user/{userId}/stress-level")
+    public ResponseEntity<Map<String, Object>> getStressLevel(@PathVariable Long userId) {
+        // Trouver les réponses pour l'utilisateur donné
+        List<Answer> userAnswers = answerRepository.findByUserId(userId);
+
+        if (userAnswers.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", "Aucun score trouvé pour cet utilisateur"));
+        }
+
+        // Calculer le score total
+        int totalScore = userAnswers.stream()
+                .mapToInt(Answer::getValue)
+                .sum();
+
+        // Retourner le score dans la réponse
+        Map<String, Object> response = new HashMap<>();
+        response.put("userId", userId);
+        response.put("stressLevel", totalScore);
+
+        return ResponseEntity.ok(response);
+    }
+
 }

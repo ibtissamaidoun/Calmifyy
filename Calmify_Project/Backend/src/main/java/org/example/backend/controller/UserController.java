@@ -124,5 +124,24 @@ public class UserController {
 
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String token) {
+        try {
+            // Extraire l'utilisateur du token
+            String jwtToken = token.replace("Bearer ", "");
+            String email = jwtUtil.extractUsername(jwtToken);
+            User user = userService.getUserByEmail(email);
+
+            if (user == null) {
+                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Invalid token", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+
 
 }

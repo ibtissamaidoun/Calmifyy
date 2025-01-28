@@ -1,9 +1,31 @@
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, MessageSquarePlus, Calendar, Bell, Lightbulb, ChevronDown } from 'lucide-react';
+import axiosInstance from "../Utils/axios-instance";// Import de l'instance Axios
 import '../styles/Sidebar.css';
 
 const Sidebar = () => {
     const location = useLocation();
+    const [user, setUser] = useState(null); // État pour stocker l'utilisateur connecté
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await axiosInstance.get('/users/me'); // Appel à l'endpoint backend
+                setUser(response.data); // Stocker les données utilisateur
+            } catch (error) {
+                console.error('Failed to fetch user:', error);
+
+                // Si le token est invalide ou expiré, redirection vers la page de connexion
+                if (error.response?.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                }
+            }
+        };
+
+        fetchUser();
+    }, []); // Exécuter une seule fois au montage du composant
 
     const navItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
@@ -38,9 +60,11 @@ const Sidebar = () => {
             <div className="sidebar-footer">
                 <button className="user-profile">
                     <div className="avatar">
-                        <span>A</span>
+                        {/* Afficher l'initiale de l'utilisateur ou "A" par défaut */}
+                        <span>{user?.firstName?.[0] || 'A'}</span>
                     </div>
-                    <span className="username">Aya</span>
+                    {/* Afficher le nom complet de l'utilisateur ou "Loading..." */}
+                    <span className="username">{user ? `${user.firstName} ${user.lastName}` : 'Loading...'}</span>
                     <ChevronDown size={16} />
                 </button>
             </div>
