@@ -58,7 +58,7 @@ public class YouTubeService {
             VideoRec video = new VideoRec();
             video.setTitle("Relaxation Video");
             video.setVideoLink(link);
-            video.setDescription("Vidéo générée dynamiquement pour relaxation.");
+            video.setDescription("Take a moment to relax with this calming video.");
             savedVideos.add(videoRecRepository.save(video));
         }
 

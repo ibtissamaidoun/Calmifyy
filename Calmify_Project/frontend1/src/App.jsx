@@ -44,27 +44,33 @@ import Questionnaire1 from "./pages/Signup/Questionnaire1.jsx";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
+import CalendarView from "./components/CalendarView";
+import Recommendations from "./components/Recommendations.jsx"; // Import du calendrier
+
 const App = () => {
     const [questionnaireData, setQuestionnaireData] = useState({});
     return (
         <Router>
             <Routes>
-                {/*<Route path="/" element={<Login />} />*/}
-<<<<<<< HEAD
-                <Route path="/Questions" element={<Questionnaire1 />} />
-                <Route path="/Questionnaire2" element={<Questionnaire2 />} />
-=======
-                <Route path="/Questionnaire1" element={<Questionnaire1 setQuestionnaireData={setQuestionnaireData}/>} />
-                <Route path="/Questionnaire2" element={<Questionnaire2 questionnaireData={questionnaireData} />} />
->>>>>>> e0a139ad9882165184ccd37c24081085a309601b
-                <Route path="/Signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forget-password" element={<ForgetPassword />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
+               
+                    <Route path="/Questions" element={<Questionnaire1 />} />
+                    <Route path="/Questionnaire2" element={<Questionnaire2 />} />
+            <Route path="/Questionnaire1" element={<Questionnaire1 setQuestionnaireData={setQuestionnaireData}/>} />
+            <Route path="/Questionnaire2" element={<Questionnaire2 questionnaireData={questionnaireData} />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forget-password" element={<ForgetPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            {/* Route dynamique pour le calendrier */}
+            <Route path="/calendar/:userId" element={<CalendarView />} />
+            <Route path="/recommendations" element={<Recommendations />} />
 
-            </Routes>
-        </Router>
-                    );
-                };
+
+        </Routes>
+</Router>
+
+
+);
+};
 
 export default App;
