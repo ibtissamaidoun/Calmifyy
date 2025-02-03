@@ -31,7 +31,7 @@ const Sidebar = () => {
         { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
         { icon: MessageSquarePlus, label: 'Start new chat', path: '/new-chat' },
         { icon: Calendar, label: 'Calendrier', path: '/calendrier/:userId' },
-        { icon: Lightbulb, label: 'Recommandations', path: '/recommandations' },
+        { icon: Lightbulb, label: 'Recommandations', path: '/recommendations' },
         { icon: Bell, label: 'Notifications', path: '/notifications' },
     ];
 

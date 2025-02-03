@@ -11,6 +11,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
 import Dashboard from './pages/Dashboard';
 import CalendarView from "./pages/CalendarView.jsx";
+import Recommendations from "./pages/Recommendations.jsx";
 import './App.css'; // Importer le CSS
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                 <Route element={<MainLayout />}>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/calendrier/:userId" element={<CalendarView/>} />
+                    <Route path="/recommendations" element={<Recommendations />} />
                 </Route>
 
                 {/* Other Pages */}
