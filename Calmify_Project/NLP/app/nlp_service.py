@@ -1,50 +1,40 @@
 from flask import Flask, request, jsonify
-from utils import predict_emotions, map_emotions_to_stress
-from lime.lime_text import LimeTextExplainer
-import numpy as np
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import time  # Pour simuler un délai (optionnel)
 
 app = Flask(__name__)
 
-@app.route('/analyze', methods=['POST'])
-def analyze_text():
+MODEL_NAME = "microsoft/DialoGPT-medium"
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
+
+@app.route('/chat', methods=['POST'])
+def chat():
     data = request.json
     text = data.get("text", "")
 
-    # Prédire les émotions
-    emotion_scores = predict_emotions(text)
+    if not text:
+        return jsonify({"error": "Texte non fourni"}), 400
 
-    # Mapper les émotions au niveau de stress
-    stress_level = map_emotions_to_stress(emotion_scores)
-
-    # Expliquez les prédictions avec LIME
-    explainer = LimeTextExplainer(class_names=["anger", "fear", "joy", "love", "sadness", "surprise"])
-
-    def lime_predict(texts):
-        predictions = []
-        for txt in texts:
-            scores = predict_emotions(txt)
-            class_scores = [scores.get(cls, 0.0) for cls in explainer.class_names]
-            predictions.append(class_scores)
-        return np.array(predictions)
-
-    try:
-        explanation = explainer.explain_instance(
-            text_instance=text,
-            classifier_fn=lime_predict,
-            num_features=5
-        )
-        explanations = [{"word": word, "importance": importance} for word, importance in explanation.as_list()]
-    except Exception as e:
-        explanations = {"error": str(e)}
-
-    # Créer une réponse complète
-    response = {
-        "emotionScores": emotion_scores,
-        "stressLevel": stress_level,
-        "explanations": explanations
+    # Envoyer une réponse provisoire
+    response_placeholder = {
+        "response": "La réponse est en cours de génération...",
+        "loading": True
     }
+    time.sleep(1)  # Optionnel : Simule un délai
+    # (Frontend peut utiliser cette réponse pour afficher un indicateur de chargement)
 
-    return jsonify(response)
+    # Générer une réponse complète
+    input_ids = tokenizer.encode(text, return_tensors="pt")
+    chat_history_ids = model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+    dialogpt_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
+
+    # Réponse finale
+    full_response = {
+        "response": dialogpt_response,
+        "loading": False  # L'indicateur de chargement s'arrête
+    }
+    return jsonify(full_response)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

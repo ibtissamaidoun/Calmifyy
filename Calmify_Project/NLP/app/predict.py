@@ -1,4 +1,4 @@
-from utils import predict_emotions, map_emotions_to_stress
+from Calmify_Project.NLP.services.emotion_analysis import predict_emotions, map_emotions_to_stress
 
 # Test des fonctions
 if __name__ == "__main__":
