@@ -1,0 +1,17 @@
+[
+    {
+        "user_input": "hello",
+        "chatbot_response": "Pas de réponse.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello",
+        "chatbot_response": "hello, hello! i need some help with this project. i need help with this project.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello, how are you&gt;?",
+        "chatbot_response": "im good, im a bit better",
+        "recommendation": ""
+    }
+]
