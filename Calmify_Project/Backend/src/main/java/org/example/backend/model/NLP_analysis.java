@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class NLP_analysis{
+public class NLP_analysis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
