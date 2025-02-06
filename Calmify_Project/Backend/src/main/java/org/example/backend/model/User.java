@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table(name = "users")
@@ -46,6 +47,14 @@ public class User {
     @Column(name = "birthdate")
     @Past(message = "Birth date must be in the past")
     private LocalDate birthDate;
+
+    @AssertTrue(message = "Age must be at least 18 years")
+    public boolean isAtLeast18YearsOld() {
+        if (birthDate == null) {
+            return false;
+        }
+        return Period.between(birthDate, LocalDate.now()).getYears() >= 15;
+    }
 
     @JsonProperty("gender")
     @Column(name = "gender")

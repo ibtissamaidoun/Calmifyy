@@ -7,16 +7,15 @@ import org.example.backend.repository.ConversationRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.NLP_analysisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+
 @RestController
 @RequestMapping("/api/nlp")
-
 public class NLP_analysisController {
+
     @Autowired
     private NLP_analysisService nlpAnalysisService;
 
@@ -27,14 +26,16 @@ public class NLP_analysisController {
     private ConversationRepository conversationRepository;
 
     @PostMapping("/analyze")
-    public NLP_analysis analyzeText(@RequestBody Map<String, String> requestBody) {
+    public ResponseEntity<NLP_analysis> analyzeText(@RequestBody Map<String, String> requestBody) {
         String text = requestBody.get("text");
         Long studentId = Long.parseLong(requestBody.get("studentId"));
         Long conversationId = Long.parseLong(requestBody.get("conversationId"));
 
-        User student = studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("Student not found"));
-        Conversation conversation = conversationRepository.findById(conversationId).orElseThrow(() -> new RuntimeException("Conversation not found"));
+        User student = studentRepository.findById(studentId).orElseThrow(() -> new RuntimeException("Étudiant introuvable"));
+        Conversation conversation = conversationRepository.findById(conversationId).orElseThrow(() -> new RuntimeException("Conversation introuvable"));
 
-        return nlpAnalysisService.analyzeText(text, student, conversation);
+        NLP_analysis analysis = nlpAnalysisService.analyzeText(text, student, conversation);
+
+        return ResponseEntity.ok(analysis);
     }
 }

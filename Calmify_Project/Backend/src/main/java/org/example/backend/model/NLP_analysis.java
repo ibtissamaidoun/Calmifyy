@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class NLP_analysis {
+public class NLP_analysis{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,13 @@ public class NLP_analysis {
     private User student;
 
     private Long id;
+
+    private String feelings;
+    private String stressLevel;
+    private LocalDateTime timestamp;
+
+    @Column(columnDefinition = "TEXT") // Permet de stocker de longues réponses
+    private String chatbotResponse;
 
     public String getFeelings() {
         return feelings;
@@ -57,9 +64,7 @@ public class NLP_analysis {
         this.timestamp = timestamp;
     }
 
-    private String feelings;
-    private String stressLevel;
-    private LocalDateTime timestamp;
+
 
     public Conversation getConversation() {
         return conversation;
@@ -78,6 +83,13 @@ public class NLP_analysis {
 
     public Long getId() {
         return id;
+    }
+    public String getChatbotResponse() {
+        return chatbotResponse;
+    }
+
+    public void setChatbotResponse(String chatbotResponse) {
+        this.chatbotResponse = chatbotResponse;
     }
 
     // Getters et Setters

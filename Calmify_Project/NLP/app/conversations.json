@@ -8,5 +8,75 @@
         "user_input": "hello",
         "chatbot_response": "hello, hello! i need some help with this project. i need help with this project.",
         "recommendation": ""
+    },
+    {
+        "user_input": "hello",
+        "chatbot_response": "hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello, hello",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello, how are you?",
+        "chatbot_response": "good.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "i am stressed",
+        "chatbot_response": "i am stressed.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "you repeate whyyyyyyyyyyy",
+        "chatbot_response": "howyyyyyyyyyyyyyyyyyyy",
+        "recommendation": ""
+    },
+    {
+        "user_input": "I need you ",
+        "chatbot_response": "a hand",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello,how are you?",
+        "chatbot_response": "good.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello",
+        "chatbot_response": "hello!",
+        "recommendation": ""
+    },
+    {
+        "user_input": "how are you?",
+        "chatbot_response": "good.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "I'm tired and I need your help",
+        "chatbot_response": "I need your help.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "hello",
+        "chatbot_response": "hello.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "regle moi le css",
+        "chatbot_response": "remne le css",
+        "recommendation": ""
+    },
+    {
+        "user_input": ".main-layout {\n\n    display: flex;\n\n    flex-direction: row;\n\n    height: 100vh;\n\n    width: 100vw;\n\n}\n\n\n\n.sidebar {\n\n    width: 250px;\n\n    height: 100%;\n\n}\n\n\n\n.main-content {\n\n    flex: 1;\n\n    display: flex;\n\n    flex-direction: column;\n\n    height: 100%;\n\n    overflow: hidden;\n\n}",
+        "chatbot_response": ".main-layout  display: flex; flex-direction: row; height: 100vh; width: 100vw;  .sidebar  width: 250px; height:",
+        "recommendation": ""
+    },
+    {
+        "user_input": "qu'est ce que fait ce code",
+        "chatbot_response": "l'anglais est l'anglais d'origine, et c'est le code de la langue officielle.",
+        "recommendation": ""
+    },
+    {
+        "user_input": "what this code do?",
+        "chatbot_response": "gcd-n",
+        "recommendation": ""
     }
 ]

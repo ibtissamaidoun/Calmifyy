@@ -4,6 +4,8 @@ import ShareLevel from '../components/ShareLevel';
 import StressLevelChart from '../components/StressLevelChart';
 import Tips from '../components/Tips';
 import '../styles/Dashboard.css';
+import Chatbot from './chatbot.jsx';
+
 
 const Dashboard = () => {
     const [userName, setUserName] = useState(null); //Etat pour stocker le prénom de l'utilisateur
@@ -13,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchUserName = async () => {
             try {
-                const response = await axiosInstance.get('/users/me'); // Appel à l'API
+                const response = await axiosInstance.get(`/users/me`); // Appel à l'API
                 console.log('Données utilisateur pour Dashboard:', response.data); // Log pour debugging
                 setUserName(response.data.firstName); // Récupère uniquement le prénom
             } catch (error) {
@@ -35,7 +37,7 @@ const Dashboard = () => {
         const fetchStressLevel = async () => {
             try {
                 const userId = localStorage.getItem('userId'); // Récupérer l'ID utilisateur stocké
-                const response = await axiosInstance.get(`/answers/user/${userId}/stress-level`); // Appel API pour récupérer le stress level
+                const response = await axiosInstance.get(`/answers/user/${userId}/stress-level`);
                 console.log('Stress level récupéré :', response.data.stressLevel); // Debugging
                 setStressLevel(response.data.stressLevel); // Stocker le stress level
             } catch (error) {
@@ -93,4 +95,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

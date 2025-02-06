@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, MessageSquarePlus, Calendar, Bell, Lightbulb, ChevronDown } from 'lucide-react';
-import axiosInstance from "../Utils/axios-instance";// Import de l'instance Axios
+import { LayoutDashboard, Calendar, Bell, Lightbulb, ChevronDown, Bot } from 'lucide-react';
+import axiosInstance from "../Utils/axios-instance";
 import '../styles/Sidebar.css';
 
 const Sidebar = () => {
     const location = useLocation();
-    const [user, setUser] = useState(null); // État pour stocker l'utilisateur connecté
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axiosInstance.get('/users/me'); // Appel à l'endpoint backend
-                setUser(response.data); // Stocker les données utilisateur
+                const response = await axiosInstance.get('/users/me');
+                setUser(response.data);
             } catch (error) {
                 console.error('Failed to fetch user:', error);
 
-                // Si le token est invalide ou expiré, redirection vers la page de connexion
                 if (error.response?.status === 401) {
                     localStorage.removeItem('token');
                     window.location.href = '/login';
@@ -25,13 +24,14 @@ const Sidebar = () => {
         };
 
         fetchUser();
-    }, []); // Exécuter une seule fois au montage du composant
+    }, []);
 
     const navItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-        { icon: MessageSquarePlus, label: 'Start new chat', path: '/new-chat' },
+        // { icon: MessageSquarePlus, label: 'Start new chat', path: '/new-chat' },
         { icon: Calendar, label: 'Calendrier', path: '/calendrier/:userId' },
         { icon: Lightbulb, label: 'Recommandations', path: '/recommendations' },
+        { icon: Bot, label: 'Chatbot', path: '/chatbot' }, // Ajout du bouton Chatbot
         { icon: Bell, label: 'Notifications', path: '/notifications' },
     ];
 
@@ -60,10 +60,8 @@ const Sidebar = () => {
             <div className="sidebar-footer">
                 <button className="user-profile">
                     <div className="avatar">
-                        {/* Afficher l'initiale de l'utilisateur ou "A" par défaut */}
                         <span>{user?.firstName?.[0] || 'A'}</span>
                     </div>
-                    {/* Afficher le nom complet de l'utilisateur ou "Loading..." */}
                     <span className="username">{user ? `${user.firstName} ${user.lastName}` : 'Loading...'}</span>
                     <ChevronDown size={16} />
                 </button>
@@ -73,4 +71,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

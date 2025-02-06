@@ -37,10 +37,17 @@ public class NLP_analysisService {
         String feelings = (String) response.get("feelings");
         String stressLevel = (String) response.get("stressLevel");
 
+        String chatbotApiUrl = "http://localhost:5173/chat";
+        Map<String, String> chatbotRequest = new HashMap<>();
+        chatbotRequest.put("text", text);
+
+        Map<String, Object> chatbotResponse = restTemplate.postForObject(chatbotApiUrl, chatbotRequest, Map.class);
+        String chatbotMessage = (String) chatbotResponse.get("chatbot_response");
         // Créer une nouvelle entité NLPAnalysis
         NLP_analysis analysis = new NLP_analysis();
         analysis.setFeelings(feelings);
         analysis.setStressLevel(stressLevel);
+        analysis.setChatbotResponse(chatbotMessage);
         analysis.setTimestamp(LocalDateTime.now());
         analysis.setStudent(student);
         analysis.setConversation(conversation);

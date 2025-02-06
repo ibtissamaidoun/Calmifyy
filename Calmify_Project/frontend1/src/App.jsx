@@ -12,7 +12,11 @@ import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
 import Dashboard from './pages/Dashboard';
 import CalendarView from "./pages/CalendarView.jsx";
 import Recommendations from "./pages/Recommendations.jsx";
-import './App.css'; // Importer le CSS
+
+import './App.css';
+import Chatbot from "./pages/chatbot.jsx";
+// import ChatbotPage from "./pages/chatbot.jsx"; // Importer le CSS
+
 
 const App = () => {
     const [questionnaireData, setQuestionnaireData] = useState({});
@@ -21,7 +25,7 @@ const App = () => {
             <Routes>
                 {/* Auth Pages (No Sidebar) */}
                 <Route element={<AuthLayout />}>
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/forget-password" element={<ForgetPassword />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
@@ -32,6 +36,8 @@ const App = () => {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/calendrier/:userId" element={<CalendarView/>} />
                     <Route path="/recommendations" element={<Recommendations />} />
+                    <Route path="/chatbot" element={<Chatbot />} />
+
                 </Route>
 
                 {/* Other Pages */}

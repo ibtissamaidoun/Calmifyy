@@ -16,7 +16,9 @@ public class Conversation {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String status;
-
+//ajouter message
+@Lob
+private String messages;
     @OneToMany(mappedBy = "conversation")
     private List<NLP_analysis> nlpAnalyses;
 
@@ -60,4 +62,11 @@ public class Conversation {
         this.nlpAnalyses = nlpAnalyses;
     }
 // Getters et Setters
+public String getMessages() {
+    return messages;
+}
+
+    public void setMessages(String messages) {
+        this.messages = messages;
+    }
 }

@@ -1,25 +1,18 @@
-// src/layouts/MainLayout.jsx
-import PropTypes from 'prop-types'; // Add PropTypes for validation
-import Sidebar from '../components/Sidebar.jsx';
-import { Outlet } from 'react-router-dom'; // Import Outlet
-import './MainLayout.css'; // Importer le CSS
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import '../layouts/MainLayout.css';
 
 const MainLayout = () => {
     return (
-        <div className="app-mainlayout">
-
-            <div className="content-mainlayout">
-                <Sidebar /> {/* Sidebar is always visible */}
-                <main>
-                    <Outlet /> {/*  Where route content (like Dashboard) renders */}
-                </main>
+        <div className="main-layout">
+            <Sidebar />
+            <div className="main-content">
+                <Outlet />
             </div>
         </div>
     );
-};
-// Add PropTypes validation
-MainLayout.propTypes = {
-    children: PropTypes.node,
 };
 
 export default MainLayout;

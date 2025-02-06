@@ -39,19 +39,19 @@ public class RecommendationService {
         String stressLevel = nlpAnalysis.getStressLevel();
 
         switch (stressLevel.toLowerCase()) {
-            case "faible":
+            case "low":
                 // Récupérer des conseils pour un stress faible
                 List<Advice> advices = adviceService.getAllAdvices();
                 recommendation.put("advices", advices);
                 break;
 
-            case "moyen":
+            case "medium":
                 // Générer et sauvegarder des vidéos dynamiques pour un stress moyen
                 List<VideoRec> generatedVideos = youTubeService.saveVideosForStress("relaxation", 5); // Ex. 5 vidéos
                 recommendation.put("videos", generatedVideos);
                 break;
 
-            case "élevé":
+            case "high":
                 // Planifier une réunion pour un stress élevé
                 if (psychologueId != null) {
                     LocalDateTime startTime = LocalDateTime.now().plusDays(1);
