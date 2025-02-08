@@ -12,9 +12,11 @@ import Questionnaire2 from "./pages/Signup/Questionnaire2.jsx";
 import Dashboard from './pages/Dashboard';
 import CalendarView from "./pages/CalendarView.jsx";
 import Recommendations from "./pages/Recommendations.jsx";
-
+import ConversationsPage from './components/ConversationsPage';
+import ConversationDetails from './components/ConversationDetails';
+import Chatbot from "./components/Chatbot";
 import './App.css';
-import Chatbot from "./pages/chatbot.jsx";
+import ConversationHistory from "./components/ConversationHistory.jsx";
 // import ChatbotPage from "./pages/chatbot.jsx"; // Importer le CSS
 
 
@@ -37,7 +39,9 @@ const App = () => {
                     <Route path="/calendrier/:userId" element={<CalendarView/>} />
                     <Route path="/recommendations" element={<Recommendations />} />
                     <Route path="/chatbot" element={<Chatbot />} />
-
+                    <Route path="/conversations" element={<ConversationHistory />} />
+                    <Route path="/conversations" element={<ConversationsPage />} />
+                    <Route path="/conversations/:id" element={<ConversationDetails />} />
                 </Route>
 
                 {/* Other Pages */}

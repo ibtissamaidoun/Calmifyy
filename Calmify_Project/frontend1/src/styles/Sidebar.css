@@ -50,3 +50,8 @@
     padding-top: 10px;
     border-top: 1px solid #ddd;
 }
+.sidebar-nav ul li a.active {
+    background-color: #e6f7ff;
+    color: #007bff;
+    font-weight: bold;
+}
