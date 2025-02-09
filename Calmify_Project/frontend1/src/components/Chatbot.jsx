@@ -53,7 +53,7 @@ const Chatbot = () => {
                             background: msg.role === "user" ? "#d1e7ff" : "#e8f5e9",
                         }}
                     >
-                        {msg.content}
+                        <div dangerouslySetInnerHTML={{ __html: msg.content }} />
                     </div>
                 ))}
             </div>
